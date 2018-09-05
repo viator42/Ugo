@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.mainpage.MainpageFragment">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mainpage_banner_text_size"
+                    android:layout_marginLeft="@dimen/margin_stanard"
+                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:text="@string/category" />
+
+                <HorizontalScrollView
+                    android:background="@color/bg_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mainpage_banner_text_size"
+                    android:layout_marginLeft="@dimen/margin_stanard"
+                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:text="@string/recommend" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mainpage_banner_text_size"
+                    android:layout_marginLeft="@dimen/margin_stanard"
+                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:text="@string/activity" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mainpage_banner_text_size"
+                    android:layout_marginLeft="@dimen/margin_stanard"
+                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:text="@string/home_re" />
+
+                <com.viator42.ugo.utils.ExpRecyclerView
+                    android:id="@+id/home_re_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>

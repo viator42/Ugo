@@ -1,0 +1,22 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="margin_stanard">8dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="mine_user_container_height">180dp</dimen>
+    <dimen name="mine_user_headimg_size">76dp</dimen>
+    <dimen name="mine_username_text_size">16sp</dimen>
+    <dimen name="category_item_width">65dp</dimen>
+    <dimen name="category_item_height">38dp</dimen>
+    <dimen name="activity_item_height">128dp</dimen>
+    <dimen name="func_grid_item_height">96dp</dimen>
+    <dimen name="goods_name_text_size">18sp</dimen>
+    <dimen name="splash_logo_size">100dp</dimen>
+    <dimen name="attribute_width">96dp</dimen>
+    <dimen name="attribute_height">38dp</dimen>
+    <dimen name="mainpage_banner_text_size">16dp</dimen>
+
+</resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.mine.MineFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_user_container_height">
+
+        <RelativeLayout
+            android:id="@+id/login_container"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login" />
+
+                <Button
+                    android:id="@+id/register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/register" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/headimg"
+                android:layout_width="@dimen/mine_user_headimg_size"
+                android:layout_height="@dimen/mine_user_headimg_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_headimg" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headimg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_stanard"
+                android:textSize="@dimen/mine_username_text_size" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <RelativeLayout
+                android:padding="@dimen/margin_stanard"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/func_grid_item_height">
+                <ImageView
+                    android:src="@drawable/ic_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/margin_stanard"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/func_grid_item_height">
+                <ImageView
+                    android:src="@drawable/ic_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/margin_stanard"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/func_grid_item_height">
+                <ImageView
+                    android:src="@drawable/ic_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/margin_stanard"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/func_grid_item_height">
+                <ImageView
+                    android:src="@drawable/ic_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
