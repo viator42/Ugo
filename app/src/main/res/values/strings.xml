@@ -22,6 +22,19 @@
     <string name="activity">最新动态</string>
     <string name="home_re">推荐商品</string>
     <string name="category">分类</string>
+    <string name="dev">开发</string>
+    <string name="settings">设置</string>
+    <string name="attribute">商品属性</string>
+    <string name="color">颜色</string>
+    <string name="size">尺码</string>
+    <string name="goods_name">商品名称</string>
+    <string name="price">价格</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="attribute_select">属性选择</string>
+    <string name="choose_size_color">点击选择颜色和尺寸</string>
+    <string name="choose_size">请选择颜色</string>
+    <string name="choose_color">请选择尺寸</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -41,6 +54,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_order_confirm">OrderConfirmActivity</string>
 
 
 </resources>

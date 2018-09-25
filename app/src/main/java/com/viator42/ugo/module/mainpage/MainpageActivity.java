@@ -1,17 +1,21 @@
 package com.viator42.ugo.module.mainpage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.brands.BrandsFragment;
+import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.mine.MineFragment;
 import com.viator42.ugo.module.theme.ThemeFragment;
 import com.viator42.ugo.utils.BottomNavigationViewHelper;
@@ -106,4 +110,26 @@ public class MainpageActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_mine, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menu_item_dev:
+                startActivity(new Intent(MainpageActivity.this, DevActivity.class));
+                break;
+            case R.id.menu_item_settings:
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

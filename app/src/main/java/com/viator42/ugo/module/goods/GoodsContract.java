@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class GoodsContract {
     interface View extends BaseView<GoodsContract.Presenter> {
         void showDetails(GoodsDetailResult goodsDetailResult);
+        void addToCartDone();
     }
 
     interface Presenter {
         void loadDetails(GoodsDetailParam goodsDetailParam);
+        void addToCart();
     }
 }

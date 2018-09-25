@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00CC66</color>
+    <color name="colorPrimaryDark">#009900</color>
+    <color name="colorAccent">#FF0033</color>
+
+    <color name="button_bg">#b4d465</color>
 
     <color name="text_white">#ffffffff</color>
     <color name="text_grey">#ff808080</color>
@@ -22,13 +24,6 @@
 
     <color name="tablelayout_background">#ffc3bfbc</color>
     <color name="tablerow_background">#ffffffff</color>
-
-    <color name="buttonl_bg_green">#b4d465</color>
-    <color name="buttonl_bg_yellow">#feca39</color>
-    <color name="buttonl_bg_red">#ee5037</color>
-    <color name="buttonl_bg_orange">#fe5407</color>
-    <color name="buttonl_bg_brick">#ee5037</color>
-    <color name="buttonl_bg_white">#ffffffff</color>
 
     <color name="attribute_btn">#ff808080</color>
     <color name="attribute_btn_selected">#fe5407</color>

@@ -17,7 +17,8 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/view_min_height"
             android:id="@+id/name"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="4dp"
@@ -39,34 +40,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="4dp"
-                    android:id="@+id/vip_price_container">
-
-                    <TextView
-                        android:text="VIP价"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="¥"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/text_orange" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/vip_price"
-                        android:textColor="@color/text_orange"
-                        android:elevation="0dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="4dp"
                     android:id="@+id/promotion_price_container">
 
                     <TextView
@@ -82,12 +55,12 @@
                         android:textColor="@color/text_orange" />
 
                     <TextView
+                        android:id="@+id/promotion_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:elevation="0dp"
                         android:text="0"
-                        android:id="@+id/promotion_price"
-                        android:textColor="@color/text_orange"
-                        android:elevation="0dp" />
+                        android:textColor="@color/text_orange" />
 
                 </TableRow>
 

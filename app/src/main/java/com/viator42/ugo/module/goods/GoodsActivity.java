@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
+import com.viator42.ugo.module.order.OrderConfirmActivity;
+import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ import java.util.HashMap;
     private User user;
     private long goodsId;
     private GoodsViewPagerAdapter goodsViewPagerAdapter;
+    private ViewGroup rootView;
     private TextView goodsNameTextView;
     private TextView salesPriceTextView;
     private TextView originalPriceTextView;
@@ -38,10 +42,13 @@ import java.util.HashMap;
     private TextView attributesTextView;
     private Button buyBtn;
     private Button addToCartBtn;
-    HashMap<String, String[]> attribute; //key:尺码 value:颜色
-    private String sizeSelected = null;
-    private String colorSelected = null;
+    HashMap<String, String[]> attributes; //key:尺码 value:颜色
     private GoodsAttributePopup goodsAttributePopup;
+    private Goods goods;
+     private String sizeSelected = null;
+     private String colorSelected = null;
+     private String attributeSelected = null;
+    private TextView attributeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,16 @@ import java.util.HashMap;
 //        goodsIntroTextView = findViewById(R.id.goods_intro);
 //        attributesTextView = findViewById(R.id.attributes);
 
+        rootView = findViewById(android.R.id.content);
+
+        attributeTextView = findViewById(R.id.attribute);
+        attributeTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callAttributePopup();
+            }
+        });
+
         appContext = (AppContext) getApplicationContext();
 
         Bundle bundle = getIntent().getExtras();
@@ -106,7 +123,7 @@ import java.util.HashMap;
 
      @Override
      public void showDetails(GoodsDetailResult goodsDetailResult) {
-        Goods goods = goodsDetailResult.data.goods;
+        goods = goodsDetailResult.data.goods;
 
         if(goods.images != null && !goods.images.isEmpty()) {
             final String[] imgList = goods.images.split(";");
@@ -127,7 +144,7 @@ import java.util.HashMap;
                 });
                 GlideApp.with(this)
                         .load(imgSrc)
-                        .centerCrop()
+                        .fitCenter()
                         .into(imgView);
                 imageViewList.add(imgView);
             }
@@ -136,10 +153,16 @@ import java.util.HashMap;
             sliderView.setAdapter(goodsViewPagerAdapter);
         }
 
+        goodsNameTextView.setText(goods.goodsName);
         salesPriceTextView.setText(String.valueOf(goods.goodsPrice));
         originalPriceTextView.setText(String.valueOf(goods.originalPrice));
 
-        attribute = goodsDetailResult.data.attribute;
+        attributes = goodsDetailResult.data.attribute;
+     }
+
+     @Override
+     public void addToCartDone() {
+
      }
 
      @Override
@@ -147,7 +170,50 @@ import java.util.HashMap;
 
      }
 
+     /**
+      * 唤起属性选择
+      */
+     private void callAttributePopup()
+     {
+         if(goodsAttributePopup == null)
+         {
+             goodsAttributePopup = new GoodsAttributePopup(GoodsActivity.this, null, goods, attributes);
+             goodsAttributePopup.setOutsideTouchable(true);
+         }
+         goodsAttributePopup.showAtLocation(rootView, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+     }
 
+     public void setAttributeSelected(String sizeSelected, String colorSelected) {
+         this.sizeSelected = sizeSelected;
+         this.colorSelected = colorSelected;
+
+         this.attributeSelected = "颜色:"+colorSelected+" 尺码:"+sizeSelected;
+         attributeTextView.setText(this.attributeSelected);
+     }
+
+     private void buyit() {
+         if(CommonUtils.isValueEmpty(sizeSelected)) {
+             CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.choose_size));
+             return;
+         }
+         if (CommonUtils.isValueEmpty(colorSelected)) {
+             CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.choose_color));
+             return;
+         }
+
+         goods.attribute = attributeSelected;
+
+         Intent intent = new Intent(GoodsActivity.this, OrderConfirmActivity.class);
+
+         ArrayList<Goods> goodsList = new ArrayList<Goods>();
+         goodsList.add(goods);
+
+         Bundle bundle = new Bundle();
+         bundle.putParcelableArrayList("goods", goodsList);
+
+         intent.putExtras(bundle);
+         startActivity(intent);
+     }
 
 //     private void callAttributePopup(int type)
 //     {

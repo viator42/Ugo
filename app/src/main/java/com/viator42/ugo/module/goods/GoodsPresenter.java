@@ -1,11 +1,17 @@
 package com.viator42.ugo.module.goods;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.google.gson.Gson;
 import com.viator42.ugo.EnvValues;
+import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
 import com.viator42.ugo.module.user.UserAction;
 import com.viator42.ugo.module.user.result.LoginResult;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -63,6 +69,12 @@ public class GoodsPresenter implements GoodsContract.Presenter {
 
                     }
                 });
+
+    }
+
+
+    @Override
+    public void addToCart() {
 
     }
 }

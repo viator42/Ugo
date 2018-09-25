@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.FuncGridItem;
 import com.viator42.ugo.model.User;
+import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.utils.GlideApp;
 import com.viator42.ugo.widget.FuncGridItemView;
@@ -106,8 +110,4 @@ public class MineFragment extends Fragment {
 
         return view;
     }
-
-
-
-
 }

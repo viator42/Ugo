@@ -27,6 +27,6 @@ public class AppContext extends Application {
 
         glideRequestOptions = new RequestOptions()
         .centerCrop();
-
     }
+
 }
