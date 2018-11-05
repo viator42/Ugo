@@ -21,6 +21,7 @@ import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.FuncGridItem;
 import com.viator42.ugo.model.User;
+import com.viator42.ugo.module.address.AddressActivity;
 import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.utils.GlideApp;
@@ -39,6 +40,8 @@ public class MineFragment extends Fragment {
 
     private AppContext appContext;
     private User user;
+
+    private ViewGroup addressManageBtn;
 
     public MineFragment() {
         // Required empty public constructor
@@ -107,6 +110,16 @@ public class MineFragment extends Fragment {
 
         headImgView = view.findViewById(R.id.headimg);
         usernameTextView = view.findViewById(R.id.username);
+
+        addressManageBtn = view.findViewById(R.id.address_manage);
+        addressManageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user != null) {
+                    startActivity(new Intent(getActivity(), AddressActivity.class));
+                }
+            }
+        });
 
         return view;
     }

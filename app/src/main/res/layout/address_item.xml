@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/consignee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_marginTop="@dimen/margin_stanard" />
+
+    <TextView
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_toRightOf="@id/consignee"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/consignee"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/deaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/area"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_marginRight="@dimen/margin_stanard"
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/zipcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deaddress"
+        android:layout_marginBottom="@dimen/margin_stanard"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_marginTop="@dimen/margin_stanard" />
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_stanard"
+        android:padding="@dimen/margin_stanard"
+        android:text="删除"
+        android:textColor="@color/text_red" />
+
+</RelativeLayout>

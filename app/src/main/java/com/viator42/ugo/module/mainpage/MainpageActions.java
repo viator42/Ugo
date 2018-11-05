@@ -24,5 +24,4 @@ public interface MainpageActions {
     @FormUrlEncoded
     Single<HomeReResult> homeRe(@Field("param") String postParams);
 
-
 }

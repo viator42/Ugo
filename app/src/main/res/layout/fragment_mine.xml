@@ -71,6 +71,7 @@
         android:layout_height="wrap_content">
         <TableRow>
             <RelativeLayout
+                android:id="@+id/address_manage"
                 android:padding="@dimen/margin_stanard"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:text="@string/order"
+                    android:text="@string/address_manage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
