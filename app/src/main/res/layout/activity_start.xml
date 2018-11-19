@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/repeat_bg"
     tools:context=".StartActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="@dimen/splash_logo_size"
         android:layout_height="@dimen/splash_logo_size"
         android:src="@drawable/ic_logo"
@@ -15,5 +17,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_stanard"
+        android:text="@string/app_name"
+        android:textSize="@dimen/splash_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </android.support.constraint.ConstraintLayout>

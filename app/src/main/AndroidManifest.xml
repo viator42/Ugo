@@ -32,7 +32,8 @@
         <activity
             android:name=".module.mainpage.MainpageActivity"
             android:label="@string/title_activity_mainpage"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.branddetail.BrandDetailActivity"
             android:label="@string/title_activity_brand_detail"

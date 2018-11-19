@@ -1,6 +1,7 @@
 package com.viator42.ugo.module.mainpage;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -129,7 +130,7 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
         homeParam.android_version = "5.6";
         homeParam.area = "370105";
 
-        mainpagePresenter.loadHome(homeParam);
+        mainpagePresenter.loadHome(homeParam, true);
 
         HomeReParam homeReParam = new HomeReParam();
         homeReParam.android_version = "5.6";
@@ -214,5 +215,10 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
     @Override
     public void setPresenter(MainpageContract.Presenter presenter) {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return super.getContext();
     }
 }

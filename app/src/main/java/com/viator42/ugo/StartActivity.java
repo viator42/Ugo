@@ -9,7 +9,8 @@ import android.view.WindowManager;
 import com.viator42.ugo.module.mainpage.MainpageActivity;
 import com.viator42.ugo.module.ref.RefAction;
 
-public class StartActivity extends AppCompatActivity {
+public class
+StartActivity extends AppCompatActivity {
     private AppContext appContext;
     private long currentTimeMil;
 

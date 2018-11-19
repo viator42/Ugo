@@ -22,5 +22,7 @@
     <dimen name="view_min_height">38dp</dimen>
     <dimen name="clickable_min_height">38dp</dimen>
     <dimen name="logo_img_size">74dp</dimen>
+    <dimen name="splash_title_size">24sp</dimen>
+
 
 </resources>
