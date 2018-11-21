@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,148 +7,141 @@
     android:orientation="vertical"
     tools:context=".module.mine.MineFragment">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/mine_user_container_height">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/login_container"
-
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/mine_user_container_height">
 
-                <Button
-                    android:id="@+id/login"
+                <RelativeLayout
+                    android:id="@+id/login_container"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/login" />
+
+                        <Button
+                            android:id="@+id/register"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/register" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/profile_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/headimg"
+                        android:layout_width="@dimen/mine_user_headimg_size"
+                        android:layout_height="@dimen/mine_user_headimg_size"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_headimg" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/headimg"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_stanard"
+                        android:textSize="@dimen/mine_username_text_size" />
+
+                </RelativeLayout>
+            </FrameLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/fav_goods_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/mine_fav_count_height"
+                    android:layout_columnWeight="1"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/login" />
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:text="@string/fav_goods" />
 
-                <Button
-                    android:id="@+id/register"
+                <TextView
+                    android:id="@+id/fav_brand_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/mine_fav_count_height"
+                    android:layout_columnWeight="1"
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/register" />
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/profile_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible">
-
-            <ImageView
-                android:id="@+id/headimg"
-                android:layout_width="@dimen/mine_user_headimg_size"
-                android:layout_height="@dimen/mine_user_headimg_size"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_headimg" />
-
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/headimg"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/margin_stanard"
-                android:textSize="@dimen/mine_username_text_size" />
-
-        </RelativeLayout>
-
-    </FrameLayout>
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TableRow>
-            <RelativeLayout
-                android:id="@+id/address_manage"
-                android:padding="@dimen/margin_stanard"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/func_grid_item_height">
-                <ImageView
-                    android:src="@drawable/ic_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_columnWeight="1"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:gravity="center"
+                    android:text="@string/fav_brand" />
 
                 <TextView
-                    android:text="@string/address_manage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/margin_stanard"
-                    android:gravity="center" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:padding="@dimen/margin_stanard"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/func_grid_item_height">
-                <ImageView
-                    android:src="@drawable/ic_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:id="@+id/goods_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/mine_fav_count_height"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="0" />
 
                 <TextView
-                    android:text="@string/order"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/margin_stanard"
-                    android:gravity="center" />
-            </RelativeLayout>
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="@string/goods_history" />
+            </GridLayout>
 
-            <RelativeLayout
-                android:padding="@dimen/margin_stanard"
-                android:layout_weight="1"
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.viator42.ugo.module.mine.MinePreferenceFragment"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/func_grid_item_height">
-                <ImageView
-                    android:src="@drawable/ic_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                android:layout_height="250dp" />
 
-                <TextView
-                    android:text="@string/order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/margin_stanard"
-                    android:gravity="center" />
-            </RelativeLayout>
+        </TableLayout>
 
-            <RelativeLayout
-                android:padding="@dimen/margin_stanard"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/func_grid_item_height">
-                <ImageView
-                    android:src="@drawable/ic_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+    </ScrollView>
 
-                <TextView
-                    android:text="@string/order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/margin_stanard"
-                    android:gravity="center" />
-            </RelativeLayout>
-
-        </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+</FrameLayout>
