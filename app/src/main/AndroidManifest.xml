@@ -69,10 +69,14 @@
             android:name=".module.address.InsertAddressActivity"
             android:label="@string/title_activity_address"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.user.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.category.CategoryActivity"
+            android:label="@string/title_activity_category"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

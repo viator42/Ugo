@@ -134,6 +134,7 @@ public class MainpageActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -156,4 +157,5 @@ public class MainpageActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

@@ -2,6 +2,7 @@ package com.viator42.ugo.module.mainpage;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.viator42.ugo.model.Activity;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Category;
 import com.viator42.ugo.model.Recommend;
+import com.viator42.ugo.module.category.CategoryActivity;
 import com.viator42.ugo.module.mainpage.param.HomeParam;
 import com.viator42.ugo.module.mainpage.param.HomeReParam;
 import com.viator42.ugo.module.mainpage.result.HomeReItem;
@@ -146,9 +148,20 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
         appContext.aesKey = homeResult.aesKey;
 
         categoryLayout.removeAllViewsInLayout();
-        for(Category category: homeResult.data.category) {
+        for(final Category category: homeResult.data.category) {
             CategoryItemView categoryItemView = new CategoryItemView(getContext(), null, category);
+            categoryItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("id", category.id);
+                    bundle.putString("name", category.name);
 
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
             categoryLayout.addView(categoryItemView);
         }
 
