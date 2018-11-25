@@ -23,6 +23,7 @@ import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Category;
 import com.viator42.ugo.model.Recommend;
 import com.viator42.ugo.module.category.CategoryActivity;
+import com.viator42.ugo.module.goods.GoodsActivity;
 import com.viator42.ugo.module.mainpage.param.HomeParam;
 import com.viator42.ugo.module.mainpage.param.HomeReParam;
 import com.viator42.ugo.module.mainpage.result.HomeReItem;
@@ -169,7 +170,6 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
         recommendLayout.removeAllViewsInLayout();
         for(Recommend recommend: homeResult.data.recommend) {
             RecommendItemView recommendItemView = new RecommendItemView(getContext(), null, recommend);
-
             recommendLayout.addView(recommendItemView);
         }
 

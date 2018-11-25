@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
@@ -27,7 +28,7 @@ import com.viator42.ugo.utils.GlideApp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
- public class GoodsActivity extends AppCompatActivity implements GoodsContract.View{
+ public class GoodsActivity extends BaseActivity implements GoodsContract.View{
     private GoodsPresenter goodsPresenter;
     private ViewPager sliderView;
     private AppContext appContext;

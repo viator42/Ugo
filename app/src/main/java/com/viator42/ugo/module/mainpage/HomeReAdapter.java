@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class HomeReAdapter extends RecyclerView.Adapter<HomeReAdapter.ViewHolder>
 {
-    List<Map<String,Object>> list =new ArrayList<Map<String,Object>>();
+    List<Map<String,Object>> list;
     private Context context;
 
     //构造器

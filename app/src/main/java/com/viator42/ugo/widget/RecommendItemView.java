@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.viator42.ugo.R;
+import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Recommend;
+import com.viator42.ugo.module.goods.GoodsActivity;
 
 public class RecommendItemView extends FrameLayout{
     private Recommend recommend;
@@ -40,18 +42,17 @@ public class RecommendItemView extends FrameLayout{
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AppgoodsId appgoodsId = recommend.getAppgoodsId();
-//                if(appgoodsId != null)
-//                {
-//                    Intent intent = new Intent(context, GoodsActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putLong("goodsId", appgoodsId.getId());
-//                    bundle.putLong("boughtType", StaticValues.BOUTHT_TYPE_NORMAL);
-//                    intent.putExtras(bundle);
-//                    appContext.setBundleObj(bundle);
-//                    context.startActivity(intent);
-//
-//                }
+                AppgoodsId appgoodsId = recommend.appgoodsId;
+                if(appgoodsId != null)
+                {
+                    Intent intent = new Intent(context, GoodsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("goodsId", appgoodsId.id);
+                    intent.putExtras(bundle);
+
+                    context.startActivity(intent);
+
+                }
             }
         });
 

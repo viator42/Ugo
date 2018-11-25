@@ -6,5 +6,5 @@ import com.viator42.ugo.model.Goods;
 import java.util.ArrayList;
 
 public class CategoryGoodsResult extends BaseResult {
-    private ArrayList<Goods> goods;
+    public ArrayList<Goods> data;
 }

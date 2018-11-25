@@ -1,14 +1,26 @@
 package com.viator42.ugo.module.category;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.base.BaseActivity;
+import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.category.param.CategoryGoodsParam;
+import com.viator42.ugo.utils.CommonUtils;
+import com.viator42.ugo.utils.EndlessGridRecyclerOnScrollListener;
+import com.viator42.ugo.utils.TimeoutbleProgressDialog;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CategoryActivity extends BaseActivity implements CategoryContract.View {
     private CategoryPresenter presenter;
@@ -17,15 +29,44 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     private int currentGoodsCount;
     private long categoryId;
     private String categoryName;
+    private List<Map<String,Object>> goodsListData;
+    private CategoryGoodsAdapter categoryGoodsAdapter;
+    private GridLayoutManager categoryLayoutManager;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private TimeoutbleProgressDialog loadingDialog;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
-        goodsListView = findViewById(R.id.category_goods_list);
+        swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+            }
+        });
+
+        loadingDialog = TimeoutbleProgressDialog.createProgressDialog(CategoryActivity.this, StaticValues.CONNECTION_TIMEOUT, new TimeoutbleProgressDialog.OnTimeOutListener() {
+            @Override
+            public void onTimeOut(TimeoutbleProgressDialog dialog) {
+                loadingDialog.dismiss();
+                CommonUtils.makeToast(CategoryActivity.this, "加载内容失败");
+            }
+        });
+
+        goodsListView = findViewById(R.id.goods_list);
+        categoryLayoutManager = new GridLayoutManager(CategoryActivity.this, 2);
+        goodsListView.setLayoutManager(categoryLayoutManager);
+        goodsListView.addOnScrollListener(new EndlessGridRecyclerOnScrollListener(categoryLayoutManager) {
+            @Override
+            public void onLoadMore(int currentPage) {
+                load();
+            }
+        });
 
         presenter = new CategoryPresenter(CategoryActivity.this);
 
@@ -33,7 +74,17 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
         categoryId = bundle.getLong("id");
         categoryName = bundle.getString("name");
 
-        user = appContext.user;
+        toolbar.setTitle(categoryName);
+
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_left_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     @Override
@@ -43,6 +94,9 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     }
 
     private void reload() {
+        goodsListData = null;
+        categoryGoodsAdapter = null;
+        currentGoodsCount = 0;
         load();
     }
 
@@ -62,7 +116,42 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     }
 
     @Override
-    public void list() {
+    public void list(ArrayList<Goods> goodsList) {
+        if (goodsListData == null) {
+            goodsListData = new ArrayList<Map<String,Object>>();
+        }
+        for (Goods goods : goodsList) {
+            Map<String,Object> item = new HashMap<String,Object>();
+            item.put("id", goods.id);
+            item.put("obj", goods);
 
+            goodsListData.add(item);
+        }
+        currentGoodsCount += goodsList.size();
+
+        if (categoryGoodsAdapter == null) {
+            categoryGoodsAdapter = new CategoryGoodsAdapter(CategoryActivity.this, goodsListData);
+            goodsListView.setAdapter(categoryGoodsAdapter);
+
+        }
+        else {
+            categoryGoodsAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+    @Override
+    public void loadSuccess() {
+        loadingDialog.dismiss();
+    }
+
+    @Override
+    public void loadFailed() {
+        loadingDialog.dismiss();
+    }
+
+    @Override
+    public void loadStart() {
+        loadingDialog.show();
     }
 }

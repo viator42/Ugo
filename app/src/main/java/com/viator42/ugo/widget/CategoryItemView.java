@@ -26,17 +26,6 @@ public class CategoryItemView extends LinearLayout {
         nameTextView = (TextView) view.findViewById(R.id.name);
         nameTextView.setText(category.name);
 
-        nameTextView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context, CategoryActivity.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putLong("id", category.id);
-//                            intent.putExtras(bundle);
-//                            context.startActivity(intent);
-            }
-        });
-
     }
 
 

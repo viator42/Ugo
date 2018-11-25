@@ -72,12 +72,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.user.RegisterActivity"
-            android:label="@string/title_activity_register"
+            android:label="@string/register"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.category.CategoryActivity"
-            android:label="@string/title_activity_category"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/category"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.webview.WebviewActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

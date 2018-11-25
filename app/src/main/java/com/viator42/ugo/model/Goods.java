@@ -28,6 +28,9 @@ public class Goods implements Parcelable {
     public long shopcartZhekouId;
     public double discountMoney;
 
+    public Goods() {
+    }
+
     protected Goods(Parcel in) {
         goodsName = in.readString();
         goodsPrice = in.readDouble();

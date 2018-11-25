@@ -22,8 +22,7 @@ public class CategoryPresenter implements CategoryContract.Presenter{
     }
 
     @Override
-    public void load(CategoryGoodsParam cagegoryGoodsParam) {
-
+    public void load(final CategoryGoodsParam cagegoryGoodsParam) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(EnvValues.SERVER_PATH)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -46,18 +45,28 @@ public class CategoryPresenter implements CategoryContract.Presenter{
                     @Override
                     public void onNext(Response<CategoryGoodsResult> categoryGoodsResultResponse) {
                         CategoryGoodsResult categoryGoodsResult = categoryGoodsResultResponse.body();
+                        if(categoryGoodsResult != null) {
+                            if(categoryGoodsResult.success) {
+                                view.list(categoryGoodsResult.data);
+                            }
+                            else {
+                                view.loadFailed();
+                            }
 
-
+                        }
+                        else {
+                                view.loadFailed();
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        view.loadFailed();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        view.loadSuccess();
                     }
                 });
     }
