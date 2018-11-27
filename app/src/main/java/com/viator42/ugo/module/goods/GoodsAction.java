@@ -2,6 +2,7 @@ package com.viator42.ugo.module.goods;
 
 import com.viator42.ugo.module.branddetail.result.BrandGoodsResult;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
+import com.viator42.ugo.module.goods.result.SaveAppGoodsCollectResult;
 import com.viator42.ugo.module.user.result.LoginResult;
 
 import io.reactivex.Observable;
@@ -15,4 +16,9 @@ public interface GoodsAction {
     @POST("GetAppGoodsIdAction.action")
     @FormUrlEncoded
     Observable<Response<GoodsDetailResult>> goodsDetail(@Field("param") String postParams);
+
+    @POST("SaveAppGoodsCollectAction.action")
+    @FormUrlEncoded
+    Observable<Response<SaveAppGoodsCollectResult>> saveAppGoodsCollect(@Field("param") String postParams);
+
 }

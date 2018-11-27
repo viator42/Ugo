@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.viator42.ugo.AppContext;
+import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.module.ref.RefAction;
 import com.viator42.ugo.module.user.LoginContract;
 
@@ -15,12 +16,11 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.module.user.param.LoginParam;
 import com.viator42.ugo.module.user.result.LoginResult;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
     private EditText telEditText;
     private EditText passwordEditText;
     private Button loginBtn;
     private LoginPresenter loginPresenter;
-    private AppContext appContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         });
 
         loginPresenter = new LoginPresenter(LoginActivity.this);
-
-        appContext = (AppContext) getApplicationContext();
     }
 
     @Override

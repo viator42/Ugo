@@ -22,7 +22,9 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.model.FuncGridItem;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.address.AddressActivity;
+import com.viator42.ugo.module.brandcollect.BrandCollectActivity;
 import com.viator42.ugo.module.dev.DevActivity;
+import com.viator42.ugo.module.goodscollect.GoodsCollectActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.module.user.RegisterActivity;
 import com.viator42.ugo.utils.GlideApp;
@@ -38,6 +40,8 @@ public class MineFragment extends Fragment {
     private ViewGroup profileContainer;
     private ImageView headImgView;
     private TextView usernameTextView;
+    private TextView goodsCollectTextView;
+    private TextView brandCollectTextView;
 
     private AppContext appContext;
     private User user;
@@ -109,6 +113,22 @@ public class MineFragment extends Fragment {
 
         headImgView = view.findViewById(R.id.headimg);
         usernameTextView = view.findViewById(R.id.username);
+
+        goodsCollectTextView = view.findViewById(R.id.goods_collect);
+        goodsCollectTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GoodsCollectActivity.class));
+            }
+        });
+
+        brandCollectTextView = view.findViewById(R.id.brand_collect);
+        brandCollectTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), BrandCollectActivity.class));
+            }
+        });
 
         return view;
     }

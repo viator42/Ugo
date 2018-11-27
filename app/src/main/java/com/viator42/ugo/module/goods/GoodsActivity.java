@@ -17,9 +17,12 @@ import android.widget.TextView;
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.base.BaseActivity;
+import com.viator42.ugo.model.AppgoodsId;
+import com.viator42.ugo.model.AppuserId;
 import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
+import com.viator42.ugo.module.goods.param.SaveAppGoodsCollectParam;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
 import com.viator42.ugo.module.order.OrderConfirmActivity;
 import com.viator42.ugo.utils.CommonUtils;
@@ -72,8 +75,10 @@ import java.util.HashMap;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // 添加收藏
+                saveAppGoodsCollect();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -164,6 +169,46 @@ import java.util.HashMap;
      @Override
      public void addToCartDone() {
 
+     }
+
+     /**
+      * 添加收藏
+      */
+     private void saveAppGoodsCollect() {
+         if (user != null) {
+             AppuserId appuserId = new AppuserId();
+             appuserId.userId = user.userId;
+             appuserId.newUserId = user.newUserId;
+             appuserId.sessionid = user.sessionid;
+
+             AppgoodsId appgoodsId = new AppgoodsId();
+             appgoodsId.id = goodsId;
+
+             SaveAppGoodsCollectParam saveAppGoodsCollectParam = new SaveAppGoodsCollectParam();
+             saveAppGoodsCollectParam.appuserId = appuserId;
+             saveAppGoodsCollectParam.appgoodsId = appgoodsId;
+
+             goodsPresenter.saveAppGoodsCollect(saveAppGoodsCollectParam);
+         }
+         else {
+             CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.needs_login));
+         }
+
+     }
+
+     @Override
+     public void saveAppGoodsCollectSuccess() {
+        CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.add_collection_success));
+     }
+
+     @Override
+     public void saveAppGoodsCollectFailed(String msg) {
+        if(CommonUtils.isValueEmpty(msg)) {
+            CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.add_collection_failed));
+        }
+        else {
+            CommonUtils.makeToast(GoodsActivity.this, msg);
+        }
      }
 
      @Override

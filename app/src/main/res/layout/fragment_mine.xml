@@ -77,12 +77,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/fav_goods_count"
+                    android:id="@+id/goods_collect"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/mine_fav_count_height"
-                    android:layout_columnWeight="1"
-                    android:layout_column="0"
                     android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
                     android:gravity="center"
                     android:text="0" />
 
@@ -96,12 +96,12 @@
                     android:text="@string/fav_goods" />
 
                 <TextView
-                    android:id="@+id/fav_brand_count"
+                    android:id="@+id/brand_collect"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/mine_fav_count_height"
-                    android:layout_columnWeight="1"
-                    android:layout_column="1"
                     android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
                     android:gravity="center"
                     android:text="0" />
 

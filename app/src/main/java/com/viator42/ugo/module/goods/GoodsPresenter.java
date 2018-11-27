@@ -7,7 +7,9 @@ import com.google.gson.Gson;
 import com.viator42.ugo.EnvValues;
 import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
+import com.viator42.ugo.module.goods.param.SaveAppGoodsCollectParam;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
+import com.viator42.ugo.module.goods.result.SaveAppGoodsCollectResult;
 import com.viator42.ugo.module.user.UserAction;
 import com.viator42.ugo.module.user.result.LoginResult;
 
@@ -75,6 +77,60 @@ public class GoodsPresenter implements GoodsContract.Presenter {
 
     @Override
     public void addToCart() {
+
+    }
+
+    /**
+     * 添加收藏
+     * @param saveAppGoodsCollectParam
+     */
+    @Override
+    public void saveAppGoodsCollect(final SaveAppGoodsCollectParam saveAppGoodsCollectParam) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(EnvValues.SERVER_PATH)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        Gson gson = new Gson();
+        String paramStr = gson.toJson(saveAppGoodsCollectParam);
+
+        GoodsAction goodsAction = retrofit.create(GoodsAction.class);
+        goodsAction.saveAppGoodsCollect(paramStr)
+                .subscribeOn(Schedulers.newThread()) // "work" on io thread
+                .observeOn(AndroidSchedulers.mainThread()) // "listen" on UIThread);
+                .subscribe(new Observer<Response<SaveAppGoodsCollectResult>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<SaveAppGoodsCollectResult> saveAppGoodsCollectResultResponse) {
+                        SaveAppGoodsCollectResult saveAppGoodsCollectResult = saveAppGoodsCollectResultResponse.body();
+                        if (saveAppGoodsCollectResult != null) {
+                            if (saveAppGoodsCollectResult.success) {
+
+                            }
+                            else {
+
+                            }
+                        }
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 }

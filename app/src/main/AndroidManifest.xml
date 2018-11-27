@@ -84,6 +84,14 @@
             android:name=".module.webview.WebviewActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.goodscollect.GoodsCollectActivity"
+            android:label="@string/title_activity_goods_collect"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.brandcollect.BrandCollectActivity"
+            android:label="@string/title_activity_brand_collect"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
