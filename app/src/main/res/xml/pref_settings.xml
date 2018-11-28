@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="address_management"
+        android:title="@string/address_management" />
+
+    <Preference
+        android:key="about_us"
+        android:title="@string/about_us" />
+
+    <Preference
+        android:key="check_update"
+        android:title="@string/check_update" />
+
+    <Preference
+        android:key="logout"
+        android:title="@string/logout" />
+
+</PreferenceScreen>

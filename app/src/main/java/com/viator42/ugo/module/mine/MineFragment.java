@@ -25,6 +25,7 @@ import com.viator42.ugo.module.address.AddressActivity;
 import com.viator42.ugo.module.brandcollect.BrandCollectActivity;
 import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.goodscollect.GoodsCollectActivity;
+import com.viator42.ugo.module.settings.SettingsActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.module.user.RegisterActivity;
 import com.viator42.ugo.utils.GlideApp;
@@ -42,6 +43,7 @@ public class MineFragment extends Fragment {
     private TextView usernameTextView;
     private TextView goodsCollectTextView;
     private TextView brandCollectTextView;
+    private ImageView settingsBtn;
 
     private AppContext appContext;
     private User user;
@@ -127,6 +129,14 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), BrandCollectActivity.class));
+            }
+        });
+
+        settingsBtn = view.findViewById(R.id.settings);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
             }
         });
 

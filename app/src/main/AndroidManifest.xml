@@ -87,11 +87,18 @@
         <activity
             android:name=".module.goodscollect.GoodsCollectActivity"
             android:label="@string/title_activity_goods_collect"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.brandcollect.BrandCollectActivity"
             android:label="@string/title_activity_brand_collect"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
