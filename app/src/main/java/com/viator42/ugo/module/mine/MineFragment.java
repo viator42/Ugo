@@ -25,6 +25,7 @@ import com.viator42.ugo.module.address.AddressActivity;
 import com.viator42.ugo.module.brandcollect.BrandCollectActivity;
 import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.goodscollect.GoodsCollectActivity;
+import com.viator42.ugo.module.profile.ProfileActivity;
 import com.viator42.ugo.module.settings.SettingsActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.module.user.RegisterActivity;
@@ -84,7 +85,6 @@ public class MineFragment extends Fragment {
 
         }
 
-
     }
 
     @Override
@@ -137,6 +137,13 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
+        profileContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
             }
         });
 

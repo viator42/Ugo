@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.viator42.ugo.widget.HeadimgPreference
+        android:key="headimg"
+        app:img="@drawable/ic_logo" />
+    <Preference
+        android:key="nickname"
+        android:title="@string/nickname" />
+
+    <Preference
+        android:key="tel"
+        android:title="@string/tel" />
+
+    <Preference
+        android:key="address"
+        android:title="@string/address" />
+
+    <Preference
+        android:key="birthday"
+        android:title="@string/birthday" />
+
+</PreferenceScreen>
