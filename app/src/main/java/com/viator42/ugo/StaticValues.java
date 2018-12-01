@@ -9,5 +9,8 @@ public class StaticValues {
     public final static int callAttributePopupAddToCart = 2;
     public final static int callAttributePopupBuy = 3;
 
+    public static final int GOODS_FAVOURITE_ON = 1;
+    public static final int GOODS_FAVOURITE_OFF = 0;
+
     public final static long splashTime = 3000;
 }

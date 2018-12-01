@@ -2,22 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
         android:key="cart"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/ic_cart_grey600_24dp"
         android:title="@string/cart"></Preference>
 
     <Preference
         android:key="order"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/ic_format_list_bulleted_grey600_24dp"
         android:title="@string/order"></Preference>
 
     <Preference
         android:key="help"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/ic_help_grey600_24dp"
         android:title="@string/help"></Preference>
 
     <Preference
         android:key="reply"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/ic_lead_pencil_grey600_24dp"
         android:title="@string/reply"></Preference>
 
 </PreferenceScreen>

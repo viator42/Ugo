@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.viator42.ugo.widget.HeadimgPreference
         android:key="headimg"
-        app:img="@drawable/ic_logo" />
+        app:img="@drawable/ic_headimg" />
     <Preference
         android:key="nickname"
         android:title="@string/nickname" />

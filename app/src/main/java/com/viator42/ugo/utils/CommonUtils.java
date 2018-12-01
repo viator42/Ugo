@@ -1,6 +1,7 @@
 package com.viator42.ugo.utils;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import java.util.Map;
 public class CommonUtils {
     public static void makeToast(Context context, String content) {
         Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
     }
 
     public static void log(String msg) {

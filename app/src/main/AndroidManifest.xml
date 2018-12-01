@@ -36,12 +36,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.branddetail.BrandDetailActivity"
-            android:label="@string/title_activity_brand_detail"
+            android:label="@string/goods_detail"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.user.LoginActivity"
-            android:label="@string/title_activity_login"
+            android:label="@string/login"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

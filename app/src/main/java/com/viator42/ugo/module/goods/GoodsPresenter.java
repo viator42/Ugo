@@ -110,25 +110,24 @@ public class GoodsPresenter implements GoodsContract.Presenter {
                         SaveAppGoodsCollectResult saveAppGoodsCollectResult = saveAppGoodsCollectResultResponse.body();
                         if (saveAppGoodsCollectResult != null) {
                             if (saveAppGoodsCollectResult.success) {
-
+                                view.saveAppGoodsCollectSuccess();
                             }
                             else {
-
+                                view.saveAppGoodsCollectFailed(saveAppGoodsCollectResult.msg);
                             }
                         }
                         else {
-
+                                view.saveAppGoodsCollectFailed(null);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        view.saveAppGoodsCollectFailed(null);
                     }
 
                     @Override
                     public void onComplete() {
-
                     }
                 });
 

@@ -1,7 +1,9 @@
 package com.viator42.ugo.module.theme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +17,9 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Theme;
 import com.viator42.ugo.module.mainpage.HomeReAdapter;
+import com.viator42.ugo.module.webview.WebviewActivity;
+import com.viator42.ugo.utils.CommonUtils;
+import com.viator42.ugo.utils.GlideApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +44,25 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Theme theme = (Theme) list.get(position).get("obj");
+        final Theme theme = (Theme) list.get(position).get("obj");
 
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(theme.img)
+                .centerCrop()
                 .into(holder.img);
+
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!CommonUtils.isValueEmpty(theme.imgUrl)) {
+                    Intent intent = new Intent(context, WebviewActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", theme.imgUrl);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

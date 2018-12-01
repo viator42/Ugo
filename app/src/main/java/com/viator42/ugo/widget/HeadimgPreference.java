@@ -26,7 +26,7 @@ public class HeadimgPreference extends Preference {
         this.context = context;
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.HeadimgPreference);
-        img = typedArray.getResourceId(R.styleable.HeadimgPreference_img, R.drawable.ic_logo);
+        img = typedArray.getResourceId(R.styleable.HeadimgPreference_img, R.drawable.ic_headimg);
 
     }
 

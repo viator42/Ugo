@@ -16,11 +16,12 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.module.user.param.LoginParam;
 import com.viator42.ugo.module.user.result.LoginResult;
 
-public class LoginActivity extends BaseActivity implements LoginContract.View {
+public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private EditText telEditText;
     private EditText passwordEditText;
     private Button loginBtn;
     private LoginPresenter loginPresenter;
+    private AppContext appContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        appContext = (AppContext) getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_left_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         telEditText = findViewById(R.id.tel);
         passwordEditText = findViewById(R.id.password);

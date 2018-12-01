@@ -42,7 +42,7 @@ public class ProfilePreferenceFragment extends PreferenceFragment {
         user = appContext.user;
 
         nicknamePreference.setTitle(user.userName);
-//        headimgPreference.setHeadimg();
+        headimgPreference.setHeadimg();
         nicknamePreference.setSummary(user.userName);
         telPreference.setSummary(user.mobile);
         addressPreference.setSummary(user.address);

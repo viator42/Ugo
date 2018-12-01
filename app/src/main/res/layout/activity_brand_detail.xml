@@ -24,6 +24,7 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/banner" />
@@ -41,12 +42,12 @@
     <include layout="@layout/content_brand_detail" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_heart_outline_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

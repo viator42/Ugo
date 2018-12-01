@@ -8,7 +8,7 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="mine_user_container_height">180dp</dimen>
+    <dimen name="mine_user_container_height">160dp</dimen>
     <dimen name="mine_user_headimg_size">76dp</dimen>
     <dimen name="mine_username_text_size">16sp</dimen>
     <dimen name="category_item_width">65dp</dimen>
@@ -28,5 +28,6 @@
     <dimen name="settings_text_size">16sp</dimen>
     <dimen name="preference_haedimg_size">48dp</dimen>
     <dimen name="preference_height">48dp</dimen>
+    <dimen name="theme_item_height">140dp</dimen>
 
 </resources>

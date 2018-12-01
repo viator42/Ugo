@@ -1,7 +1,12 @@
  package com.viator42.ugo.module.goods;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
@@ -14,17 +19,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.AppuserId;
 import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.model.User;
+import com.viator42.ugo.module.branddetail.BrandDetailActivity;
 import com.viator42.ugo.module.goods.param.GoodsDetailParam;
 import com.viator42.ugo.module.goods.param.SaveAppGoodsCollectParam;
 import com.viator42.ugo.module.goods.result.GoodsDetailResult;
 import com.viator42.ugo.module.order.OrderConfirmActivity;
+import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 
@@ -44,7 +57,6 @@ import java.util.HashMap;
     private TextView originalPriceTextView;
     private TextView goodsIntroTextView;
     private TextView attributesTextView;
-    private Button buyBtn;
     private Button addToCartBtn;
     HashMap<String, String[]> attributes; //key:尺码 value:颜色
     private GoodsAttributePopup goodsAttributePopup;
@@ -53,6 +65,7 @@ import java.util.HashMap;
      private String colorSelected = null;
      private String attributeSelected = null;
     private TextView attributeTextView;
+    private FloatingActionButton favBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +84,7 @@ import java.util.HashMap;
 
         goodsPresenter = new GoodsPresenter(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 添加收藏
-                saveAppGoodsCollect();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
+        favBtn = (FloatingActionButton) findViewById(R.id.fab);
 
         sliderView = findViewById(R.id.slider);
         goodsNameTextView = findViewById(R.id.goods_name);
@@ -136,7 +140,7 @@ import java.util.HashMap;
             ArrayList<ImageView> imageViewList = new ArrayList<ImageView>();
 
             for(int a=0; a<imgList.length; a++) {
-                ImageView imgView = new ImageView(this);
+                final ImageView imgView = new ImageView(this);
                 final String imgSrc = imgList[a];
                 imgView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -152,12 +156,45 @@ import java.util.HashMap;
                         .load(imgSrc)
                         .fitCenter()
                         .into(imgView);
+
                 imageViewList.add(imgView);
             }
 
             goodsViewPagerAdapter = new GoodsViewPagerAdapter(this, imageViewList);
             sliderView.setAdapter(goodsViewPagerAdapter);
         }
+
+         switch (goods.flag) {
+            case StaticValues.GOODS_FAVOURITE_ON:
+                favBtn.setImageResource(R.drawable.ic_heart_white_24dp);
+                favBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (user == null) {
+                            needsLogin();
+                        }
+                        else {
+                            CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.has_favourited));
+                        }
+                    }
+                });
+                break;
+            case StaticValues.GOODS_FAVOURITE_OFF:
+                favBtn.setImageResource(R.drawable.ic_heart_outline_white_24dp);
+                favBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (user == null) {
+                            needsLogin();
+                        }
+                        else {
+                            // 添加收藏
+                            saveAppGoodsCollect();
+                        }
+                    }
+                });
+                break;
+         }
 
         goodsNameTextView.setText(goods.goodsName);
         salesPriceTextView.setText(String.valueOf(goods.goodsPrice));
@@ -199,6 +236,8 @@ import java.util.HashMap;
      @Override
      public void saveAppGoodsCollectSuccess() {
         CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.add_collection_success));
+        goods.flag = StaticValues.GOODS_FAVOURITE_ON;
+        favBtn.setImageResource(R.drawable.ic_heart_white_24dp);
      }
 
      @Override
@@ -259,6 +298,27 @@ import java.util.HashMap;
 
          intent.putExtras(bundle);
          startActivity(intent);
+     }
+
+     /**
+      * 需要登录窗口
+      */
+     public void needsLogin() {
+         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+         builder.setMessage(R.string.needs_login);
+         builder.setTitle(R.string.tip);
+         builder.setPositiveButton(getResources().getString(R.string.login), new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+                 dialogInterface.dismiss();
+
+                 Intent intent = new Intent(GoodsActivity.this, LoginActivity.class);
+                 startActivity(intent);
+
+             }
+         });
+         builder.setNegativeButton(getResources().getString(R.string.cancel), null);
+         builder.create().show();
      }
 
 //     private void callAttributePopup(int type)

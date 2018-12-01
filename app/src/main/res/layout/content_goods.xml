@@ -112,17 +112,11 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/buy"
-                    android:layout_marginLeft="@dimen/margin_stanard"
-                    android:layout_marginTop="@dimen/margin_stanard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buy" />
-
-                <Button
+                    android:background="@color/button_bg"
+                    android:textColor="@color/text_white"
                     android:id="@+id/add_to_cart"
-                    android:layout_marginLeft="@dimen/margin_stanard"
-                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/add_to_cart" />

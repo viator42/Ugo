@@ -1,9 +1,14 @@
 package com.viator42.ugo;
 
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.viator42.ugo.model.User;
+import com.viator42.ugo.module.user.LoginActivity;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

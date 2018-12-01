@@ -1,6 +1,7 @@
 package com.viator42.ugo.module.mainpage;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,16 +10,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.brands.BrandsFragment;
-import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.mine.MineFragment;
 import com.viator42.ugo.module.theme.ThemeFragment;
 import com.viator42.ugo.utils.BottomNavigationViewHelper;
@@ -132,6 +129,27 @@ public class MainpageActivity extends AppCompatActivity {
         }
 
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        //退出确认
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainpageActivity.this);
+        builder.setMessage(R.string.exit_confirm);
+        builder.setTitle(R.string.tip);
+        builder.setPositiveButton(getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                System.exit(0);
+
+
+            }
+        });
+        builder.setNegativeButton(getResources().getString(R.string.cancel), null);
+        builder.create().show();
+
+
     }
 
     /*

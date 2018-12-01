@@ -42,6 +42,7 @@ public class CategoryGoodsAdapter extends RecyclerView.Adapter<CategoryGoodsAdap
 
         GlideApp.with(context)
                 .load(goods.logopicUrl)
+//                .placeholder()
                 .centerCrop()
                 .into(holder.img);
 

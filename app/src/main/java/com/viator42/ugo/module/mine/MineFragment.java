@@ -37,7 +37,6 @@ import com.viator42.ugo.widget.FuncGridItemView;
  */
 public class MineFragment extends Fragment {
     private Button loginBtn;
-    private Button registerBtn;
     private ViewGroup loginContainer;
     private ViewGroup profileContainer;
     private ImageView headImgView;
@@ -97,19 +96,11 @@ public class MineFragment extends Fragment {
         profileContainer = view.findViewById(R.id.profile_container);
 
         loginBtn = view.findViewById(R.id.login);
-        registerBtn = view.findViewById(R.id.register);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LoginActivity.class));
-            }
-        });
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), RegisterActivity.class));
             }
         });
 

@@ -47,9 +47,8 @@ StartActivity extends AppCompatActivity {
     }
 
     private void wrap() {
-        Intent intent = new Intent(StartActivity.this, MainpageActivity.class);
-        startActivity(intent);
-
+        startActivity(new Intent(StartActivity.this, MainpageActivity.class));
+        overridePendingTransition(R.anim.wrap_fade_enter_in, R.anim.wrap_fade_enter_out);
         finish();
     }
 

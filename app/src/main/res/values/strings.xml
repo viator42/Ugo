@@ -58,12 +58,15 @@
     <string name="nickname">昵称</string>
     <string name="address">地址</string>
     <string name="birthday">生日</string>
+    <string name="exit_confirm">是否退出U购商城？</string>
+    <string name="tip">提示</string>
+    <string name="has_favourited">已经添加收藏</string>
+    <string name="goods_detail">商品详情</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_brand_detail">BrandDetailActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
