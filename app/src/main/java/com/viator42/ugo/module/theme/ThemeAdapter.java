@@ -48,6 +48,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder> 
 
         GlideApp.with(context)
                 .load(theme.img)
+                .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.img);
 

@@ -18,6 +18,7 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.model.Activity;
 import com.viator42.ugo.module.webview.WebviewActivity;
 import com.viator42.ugo.utils.CommonUtils;
+import com.viator42.ugo.utils.GlideApp;
 
 public class ActivityItemView extends FrameLayout {
     private ImageView imageView;
@@ -29,9 +30,10 @@ public class ActivityItemView extends FrameLayout {
         final View view = inflater.inflate(R.layout.activity_item, this, true);
         imageView = view.findViewById(R.id.img);
 
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(activity.img)
-                .apply(RequestOptions.centerCropTransform())
+                .placeholder(R.drawable.placeholder)
+                .centerCrop()
                 .into(imageView);
 
         view.setOnClickListener(new OnClickListener() {

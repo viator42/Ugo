@@ -86,12 +86,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.goodscollect.GoodsCollectActivity"
-            android:label="@string/title_activity_goods_collect"
+            android:label="@string/goods_collect"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.brandcollect.BrandCollectActivity"
-            android:label="@string/title_activity_brand_collect"
+            android:label="@string/brand_collect"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

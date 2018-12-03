@@ -19,6 +19,7 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.module.goods.GoodsActivity;
 import com.viator42.ugo.module.mainpage.HomeReAdapter;
+import com.viator42.ugo.utils.GlideApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,9 @@ public class BrandGoodsAdapter extends RecyclerView.Adapter<BrandGoodsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final AppgoodsId appgoodsId = (AppgoodsId) list.get(position).get("obj");
 
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(appgoodsId.logopicUrl)
+                .placeholder(R.drawable.placeholder)
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.img);
 

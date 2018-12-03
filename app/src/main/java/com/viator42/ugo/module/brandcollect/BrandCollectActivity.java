@@ -41,6 +41,14 @@ public class BrandCollectActivity extends BaseActivity implements BrandCollectCo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_left_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         brandCollectListView = findViewById(R.id.brand_collect_list);
         layoutManager = new LinearLayoutManager(BrandCollectActivity.this);
         brandCollectListView.setLayoutManager(layoutManager);

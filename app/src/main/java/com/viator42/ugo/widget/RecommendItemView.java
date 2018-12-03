@@ -17,6 +17,7 @@ import com.viator42.ugo.R;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Recommend;
 import com.viator42.ugo.module.goods.GoodsActivity;
+import com.viator42.ugo.utils.GlideApp;
 
 public class RecommendItemView extends FrameLayout{
     private Recommend recommend;
@@ -34,9 +35,10 @@ public class RecommendItemView extends FrameLayout{
         introTextView = view.findViewById(R.id.intro);
 
         introTextView.setText(recommend.intro);
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(recommend.img)
-                .apply(RequestOptions.centerCropTransform())
+                .placeholder(R.drawable.placeholder)
+                .centerCrop()
                 .into(imgView);
 
         setOnClickListener(new View.OnClickListener() {

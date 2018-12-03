@@ -46,6 +46,7 @@ public class BrandCollectListAdapter extends RecyclerView.Adapter<BrandCollectLi
         final Brand brand = (Brand) list.get(position).get("obj");
         GlideApp.with(context)
                 .load(brand.logopic)
+                .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.img);
         holder.name.setText(brand.brandName);

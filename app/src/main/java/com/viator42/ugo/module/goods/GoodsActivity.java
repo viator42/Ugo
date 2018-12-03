@@ -154,6 +154,7 @@ import java.util.HashMap;
                 });
                 GlideApp.with(this)
                         .load(imgSrc)
+                        .placeholder(R.drawable.placeholder)
                         .fitCenter()
                         .into(imgView);
 

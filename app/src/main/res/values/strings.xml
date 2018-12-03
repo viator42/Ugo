@@ -41,8 +41,8 @@
     <string name="mobile">手机号</string>
     <string name="consignee">联系人</string>
     <string name="deaddress">详细地址</string>
-    <string name="fav_goods">收藏的商品</string>
-    <string name="fav_brand">收藏的品牌</string>
+    <string name="goods_collect">收藏的商品</string>
+    <string name="brand_collect">收藏的品牌</string>
     <string name="goods_history">浏览足迹</string>
     <string name="help">使用帮助</string>
     <string name="reply">反馈信息</string>
@@ -90,8 +90,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_goods_collect">GoodsCollectActivity</string>
-    <string name="title_activity_brand_collect">BrandCollectActivity</string>
+
 
     <string name="help_content">U购APP模块使用帮助\n 
                 一.\t首页\n 

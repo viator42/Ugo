@@ -34,6 +34,7 @@ import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.EndlessGridRecyclerOnScrollListener;
 import com.viator42.ugo.utils.EndlessParentScrollListener;
+import com.viator42.ugo.utils.GlideApp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,8 +105,9 @@ public class BrandDetailActivity extends AppCompatActivity implements BrandDetai
         brandId = appBrandAll.id;
 
         collapsingToolbarLayout.setTitle(appBrandAll.brandName);
-        Glide.with(BrandDetailActivity.this)
+        GlideApp.with(BrandDetailActivity.this)
                 .load(appBrandAll.showpic)
+                .placeholder(R.drawable.placeholder)
                 .into(bannerImageView);
 
         brandDetailPresenter = new BrandDetailPresenter(BrandDetailActivity.this);

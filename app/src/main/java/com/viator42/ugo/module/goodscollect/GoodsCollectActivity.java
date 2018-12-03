@@ -43,6 +43,14 @@ public class GoodsCollectActivity extends BaseActivity implements GoodsCollectCo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_left_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         appContext = (AppContext) getApplicationContext();
 
         goodsCollectListView = findViewById(R.id.goods_list);

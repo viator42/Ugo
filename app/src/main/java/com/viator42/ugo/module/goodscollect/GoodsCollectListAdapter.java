@@ -44,6 +44,7 @@ public class GoodsCollectListAdapter extends RecyclerView.Adapter<GoodsCollectLi
 
         GlideApp.with(context)
                 .load(appgoodsId.logopicUrl)
+                .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.img);
 

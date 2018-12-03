@@ -53,6 +53,7 @@ public class HomeReAdapter extends RecyclerView.Adapter<HomeReAdapter.ViewHolder
 
         GlideApp.with(context)
             .load(appgoodsId.logopicUrl)
+            .placeholder(R.drawable.placeholder)
             .centerCrop()
             .into(holder.img);
 
