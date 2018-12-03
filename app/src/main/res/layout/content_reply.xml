@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".module.reply.ReplyActivity"
+    tools:showIn="@layout/activity_reply">
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/submit"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="top|left"
+        android:hint="@string/insert_reply_text"
+        android:padding="@dimen/margin_stanard" />
+
+    <Button
+        android:text="@string/submit"
+        android:id="@+id/submit"
+        android:background="@color/button_bg"
+        android:textColor="@color/text_white"
+        android:layout_marginHorizontal="@dimen/margin_stanard"
+        android:layout_marginBottom="@dimen/margin_stanard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

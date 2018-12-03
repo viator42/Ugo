@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.dev.DevActivity;
+import com.viator42.ugo.module.reply.ReplyActivity;
+import com.viator42.ugo.module.text.TextDisplayActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +48,12 @@ public class MinePreferenceFragment extends PreferenceFragment {
         helpPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Bundle bundle = new Bundle();
+                bundle.putString("title", getResources().getString(R.string.help));
+                bundle.putString("content", getResources().getString(R.string.help_content));
+                Intent intent = new Intent(getActivity(), TextDisplayActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
                 return true;
             }
@@ -55,7 +63,7 @@ public class MinePreferenceFragment extends PreferenceFragment {
         replyPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-
+                startActivity(new Intent(getActivity(), ReplyActivity.class));
                 return true;
             }
         });

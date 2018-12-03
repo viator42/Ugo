@@ -1,6 +1,7 @@
 package com.viator42.ugo.module.settings;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.viator42.ugo.R;
+import com.viator42.ugo.module.aboutus.AboutUsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,7 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
         aboutUs.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
                 return true;
             }
         });
