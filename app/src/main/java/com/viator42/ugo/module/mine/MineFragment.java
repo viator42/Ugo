@@ -41,8 +41,8 @@ public class MineFragment extends Fragment {
     private ViewGroup profileContainer;
     private ImageView headImgView;
     private TextView usernameTextView;
-    private TextView goodsCollectTextView;
-    private TextView brandCollectTextView;
+    private ViewGroup goodsCollect;
+    private ViewGroup brandCollect;
     private ImageView settingsBtn;
 
     private AppContext appContext;
@@ -107,16 +107,16 @@ public class MineFragment extends Fragment {
         headImgView = view.findViewById(R.id.headimg);
         usernameTextView = view.findViewById(R.id.username);
 
-        goodsCollectTextView = view.findViewById(R.id.goods_collect);
-        goodsCollectTextView.setOnClickListener(new View.OnClickListener() {
+        goodsCollect = view.findViewById(R.id.goods_collect);
+        goodsCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), GoodsCollectActivity.class));
             }
         });
 
-        brandCollectTextView = view.findViewById(R.id.brand_collect);
-        brandCollectTextView.setOnClickListener(new View.OnClickListener() {
+        brandCollect = view.findViewById(R.id.brand_collect);
+        brandCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), BrandCollectActivity.class));
