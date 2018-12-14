@@ -1,7 +1,11 @@
 package com.viator42.ugo.module.mainpage;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,7 +18,9 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.module.brands.BrandsFragment;
 import com.viator42.ugo.module.mine.MineFragment;
 import com.viator42.ugo.module.theme.ThemeFragment;
@@ -30,6 +36,7 @@ public class MainpageActivity extends AppCompatActivity {
     private FragmentTransaction transaction;
     private RelativeLayout contentViewGroup;
     private Fragment currentFragment;
+    private AppContext appContext;
 
     private TextView mTextMessage;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -42,10 +49,19 @@ public class MainpageActivity extends AppCompatActivity {
         }
     };
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
+
+        appContext = (AppContext) getApplicationContext();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,6 +85,7 @@ public class MainpageActivity extends AppCompatActivity {
 
         navSelected(R.id.nav_home);
 
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     /**
@@ -141,6 +158,9 @@ public class MainpageActivity extends AppCompatActivity {
         builder.setPositiveButton(getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                //退出App,关闭所有activity
+                appContext.localBroadcastManager.sendBroadcast(new Intent(StaticValues.BROADCAST_EXIT));
+
                 System.exit(0);
 
 
@@ -148,8 +168,12 @@ public class MainpageActivity extends AppCompatActivity {
         });
         builder.setNegativeButton(getResources().getString(R.string.cancel), null);
         builder.create().show();
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     /*

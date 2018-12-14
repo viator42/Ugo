@@ -33,10 +33,13 @@ public class HomeReAdapter extends RecyclerView.Adapter<HomeReAdapter.ViewHolder
 {
     List<Map<String,Object>> list;
     private Context context;
+    private AppContext appContext;
 
     //构造器
-    public HomeReAdapter(List<Map<String,Object>> list, Context context){
+    public
+    HomeReAdapter(List<Map<String,Object>> list, Context context){
         this.context=context;
+        this.appContext = (AppContext) context.getApplicationContext();
         this.list=list;
     }
 
@@ -66,12 +69,12 @@ public class HomeReAdapter extends RecyclerView.Adapter<HomeReAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putLong("goodsId", appgoodsId.id);
-                Intent intent = new Intent(context, GoodsActivity.class);
-                intent.putExtras(bundle);
-
-                context.startActivity(intent);
+//                Bundle bundle = new Bundle();
+//                bundle.putLong("goodsId", appgoodsId.id);
+//                Intent intent = new Intent(context, GoodsActivity.class);
+//                intent.putExtras(bundle);
+                appContext.eventBus.postSticky(appgoodsId);
+                context.startActivity(new Intent(context, GoodsActivity.class));
             }
         });
 

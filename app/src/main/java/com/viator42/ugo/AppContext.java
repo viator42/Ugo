@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.user.LoginActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,7 +27,7 @@ public class AppContext extends Application {
     public User user;
     public RequestOptions glideRequestOptions;
     public LocalBroadcastManager localBroadcastManager;
-    public BroadcastReceiver broadcastReceiver;
+    public EventBus eventBus;
 
     @Override
     public void onCreate() {
@@ -40,15 +42,7 @@ public class AppContext extends Application {
         glideRequestOptions = new RequestOptions()
         .centerCrop();
 
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-            }
-        };
-
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter("EXIT_APP_ACTION"));
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
@@ -87,13 +81,15 @@ public class AppContext extends Application {
             }
         });
 
+        eventBus = EventBus.builder()
+                .logNoSubscriberMessages(true)
+                .sendNoSubscriberEvent(true)
+                .build();
+
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-
     }
 }

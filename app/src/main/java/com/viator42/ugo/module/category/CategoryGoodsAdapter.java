@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.Goods;
 import com.viator42.ugo.module.goods.GoodsActivity;
@@ -22,10 +24,12 @@ import java.util.Map;
 public class CategoryGoodsAdapter extends RecyclerView.Adapter<CategoryGoodsAdapter.ViewHolder> {
     List<Map<String,Object>> list;
     private Context context;
+    private AppContext appContext;
 
     public CategoryGoodsAdapter(Context context, List<Map<String, Object>> list) {
         this.list = list;
         this.context = context;
+        this.appContext = (AppContext) context.getApplicationContext();
     }
 
     @NonNull
@@ -55,12 +59,13 @@ public class CategoryGoodsAdapter extends RecyclerView.Adapter<CategoryGoodsAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putLong("goodsId", goods.id);
-                Intent intent = new Intent(context, GoodsActivity.class);
-                intent.putExtras(bundle);
+//                Bundle bundle = new Bundle();
+//                bundle.putLong("goodsId", goods.id);
+//                Intent intent = new Intent(context, GoodsActivity.class);
+//                intent.putExtras(bundle);
 
-                context.startActivity(intent);
+                appContext.eventBus.postSticky(goods);
+                context.startActivity(new Intent(context, GoodsActivity.class));
             }
         });
 

@@ -19,6 +19,12 @@ public class CommonUtils {
 //                .setAction("Action", null).show();
     }
 
+    public static void makeToast(Context context, int resId) {
+        Toast.makeText(context, context.getResources().getString(resId), Toast.LENGTH_SHORT).show();
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+    }
+
     public static void log(String msg) {
         Log.v("Ugo", msg);
     }

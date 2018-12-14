@@ -39,7 +39,7 @@ public class CategoryPresenter implements CategoryContract.Presenter{
                 .subscribe(new Observer<Response<CategoryGoodsResult>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        view.loadStart();
                     }
 
                     @Override
@@ -50,23 +50,23 @@ public class CategoryPresenter implements CategoryContract.Presenter{
                                 view.list(categoryGoodsResult.data);
                             }
                             else {
-                                view.loadFailed();
+                                view.loadFailed(categoryGoodsResult.msg);
                             }
 
                         }
                         else {
-                                view.loadFailed();
+                                view.loadFailed(null);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.loadFailed();
+                        view.loadFailed(null);
                     }
 
                     @Override
                     public void onComplete() {
-                        view.loadSuccess();
+                        view.loadDone();
                     }
                 });
     }

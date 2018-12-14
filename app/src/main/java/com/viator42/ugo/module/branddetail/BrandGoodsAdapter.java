@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.*;
 import com.bumptech.glide.request.RequestOptions;
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.module.goods.GoodsActivity;
@@ -28,10 +29,12 @@ import java.util.Map;
 public class BrandGoodsAdapter extends RecyclerView.Adapter<BrandGoodsAdapter.ViewHolder> {
     List<Map<String,Object>> list;
     private Context context;
+    private AppContext appContext;
 
     public BrandGoodsAdapter(List<Map<String, Object>> list, Context context) {
         this.list = list;
         this.context = context;
+        this.appContext = (AppContext) context.getApplicationContext();
     }
 
     @NonNull
@@ -60,12 +63,14 @@ public class BrandGoodsAdapter extends RecyclerView.Adapter<BrandGoodsAdapter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putLong("goodsId", appgoodsId.id);
-                Intent intent = new Intent(context, GoodsActivity.class);
-                intent.putExtras(bundle);
+//                Bundle bundle = new Bundle();
+//                bundle.putLong("goodsId", appgoodsId.id);
+//                Intent intent = new Intent(context, GoodsActivity.class);
+//                intent.putExtras(bundle);
+//                context.startActivity(intent);
 
-                context.startActivity(intent);
+                appContext.eventBus.postSticky(appgoodsId);
+                context.startActivity(new Intent(context, GoodsActivity.class));
             }
         });
 

@@ -41,6 +41,9 @@ import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -105,16 +108,34 @@ import java.util.HashMap;
 
         appContext = (AppContext) getApplicationContext();
 
-        Bundle bundle = getIntent().getExtras();
-        goodsId = bundle.getLong("goodsId");
+//        Bundle bundle = getIntent().getExtras();
+//        goodsId = bundle.getLong("goodsId");
 
+        appContext.eventBus.register(this);
     }
 
      @Override
      protected void onStart() {
          super.onStart();
          user = appContext.user;
+     }
+
+     @Override
+     protected void onDestroy() {
+         super.onDestroy();
+         appContext.eventBus.unregister(this);
+     }
+
+     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+     public void onAppgoodsIdEvent(AppgoodsId appgoodsId) {
+         goodsId = appgoodsId.id;
          loadDetail();
+     }
+
+     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+     public void onGoodsEvent(Goods goods) {
+        goodsId = goods.id;
+        loadDetail();
      }
 
      private void loadDetail() {

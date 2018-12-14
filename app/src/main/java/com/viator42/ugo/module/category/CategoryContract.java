@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public interface CategoryContract {
     public interface View {
         public void list(ArrayList<Goods> goods);
-        public void loadSuccess();
-        public void loadFailed();
+        public void loadDone();
+        public void loadFailed(String msg);
         public void loadStart();
     }
 

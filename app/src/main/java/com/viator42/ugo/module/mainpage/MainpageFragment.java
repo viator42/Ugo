@@ -154,13 +154,8 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
             categoryItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("id", category.id);
-                    bundle.putString("name", category.name);
-
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    appContext.eventBus.postSticky(category);
+                    startActivity(new Intent(getActivity(), CategoryActivity.class));
                 }
             });
             categoryLayout.addView(categoryItemView);
