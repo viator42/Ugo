@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.goods;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,15 +20,24 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.utils.GlideApp;
 import com.viator42.ugo.widget.ScaleImageView;
 
 public class ScaleImageViewActivity extends AppCompatActivity {
     private ImageView closeBtn;
     private ScaleImageView imgView;
+    private AppContext appContext;
 
     private String imgSrc;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +46,8 @@ public class ScaleImageViewActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_scale_image_view);
+
+        appContext = (AppContext) getApplicationContext();
 
         closeBtn = findViewById(R.id.close);
         closeBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +59,7 @@ public class ScaleImageViewActivity extends AppCompatActivity {
 
         imgView = findViewById(R.id.img);
 
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     @Override
@@ -63,5 +79,11 @@ public class ScaleImageViewActivity extends AppCompatActivity {
                         imgView.setImageDrawable(resource);
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 }

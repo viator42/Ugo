@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.address;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +13,7 @@ import android.widget.EditText;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.module.address.result.InsertAddressResult;
 
 public class InsertAddressActivity extends AppCompatActivity implements InsertAddressContract.View {
@@ -18,6 +23,12 @@ public class InsertAddressActivity extends AppCompatActivity implements InsertAd
     public Button confirmBtn;
     public Button cancelBtn;
     public AppContext appContext;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +68,13 @@ public class InsertAddressActivity extends AppCompatActivity implements InsertAd
 
         appContext = (AppContext) getApplicationContext();
 
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.category;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -42,6 +46,12 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     private TimeoutbleProgressDialog loadingDialog;
     private Toolbar toolbar;
     private AppContext appContext;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +106,14 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
         appContext = (AppContext) getApplicationContext();
 
         appContext.eventBus.register(this);
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         appContext.eventBus.unregister(this);
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     @Override

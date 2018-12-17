@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.text;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,12 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.utils.CommonUtils;
 
 public class TextDisplayActivity extends AppCompatActivity {
     private TextView contentTextView;
     private Toolbar toolbar;
+    private AppContext appContext;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,14 @@ public class TextDisplayActivity extends AppCompatActivity {
             contentTextView.setText(content);
         }
 
+        appContext = (AppContext) getApplicationContext();
+
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
+    }
 }

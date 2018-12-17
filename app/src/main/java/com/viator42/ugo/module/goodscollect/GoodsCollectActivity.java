@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.goodscollect;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +15,7 @@ import android.view.View;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.model.AppGoodsCollectItem;
 import com.viator42.ugo.model.AppgoodsId;
@@ -35,6 +40,12 @@ public class GoodsCollectActivity extends BaseActivity implements GoodsCollectCo
     private GoodsCollectListAdapter adapter;
     private RecyclerView goodsCollectListView;
     private GridLayoutManager categoryLayoutManager;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +72,19 @@ public class GoodsCollectActivity extends BaseActivity implements GoodsCollectCo
 
         user = appContext.user;
 
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         reload();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     private void reload() {

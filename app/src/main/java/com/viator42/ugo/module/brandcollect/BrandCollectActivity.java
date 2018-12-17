@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.brandcollect;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +15,7 @@ import android.view.View;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.model.AppBrandAll;
 import com.viator42.ugo.model.AppBrandCollectItem;
@@ -33,6 +38,12 @@ public class BrandCollectActivity extends BaseActivity implements BrandCollectCo
     private LinearLayoutManager layoutManager;
     private List<Map<String,Object>> brandListData;
     private BrandCollectPresenter brandCollectPresenter;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +68,20 @@ public class BrandCollectActivity extends BaseActivity implements BrandCollectCo
         user = appContext.user;
 
         brandCollectPresenter = new BrandCollectPresenter(BrandCollectActivity.this);
+
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         load();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     private void load() {

@@ -1,8 +1,11 @@
  package com.viator42.ugo.module.goods;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -69,6 +72,12 @@ import java.util.HashMap;
      private String attributeSelected = null;
     private TextView attributeTextView;
     private FloatingActionButton favBtn;
+     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+         @Override
+         public void onReceive(Context context, Intent intent) {
+             finish();
+         }
+     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +121,8 @@ import java.util.HashMap;
 //        goodsId = bundle.getLong("goodsId");
 
         appContext.eventBus.register(this);
+
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
      @Override
@@ -124,6 +135,7 @@ import java.util.HashMap;
      protected void onDestroy() {
          super.onDestroy();
          appContext.eventBus.unregister(this);
+         appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
      }
 
      @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

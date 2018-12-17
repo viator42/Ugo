@@ -1,5 +1,9 @@
 package com.viator42.ugo.module.user;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.viator42.ugo.AppContext;
+import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.module.ref.RefAction;
 import com.viator42.ugo.module.user.LoginContract;
@@ -22,6 +27,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private Button loginBtn;
     private LoginPresenter loginPresenter;
     private AppContext appContext;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         });
 
         loginPresenter = new LoginPresenter(LoginActivity.this);
+
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     @Override

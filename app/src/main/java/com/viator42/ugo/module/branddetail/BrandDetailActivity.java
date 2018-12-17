@@ -1,9 +1,11 @@
 package com.viator42.ugo.module.branddetail;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -58,6 +60,13 @@ public class BrandDetailActivity extends AppCompatActivity implements BrandDetai
     private User user;
     private long brandId;
     private int currentPage;
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +152,7 @@ public class BrandDetailActivity extends AppCompatActivity implements BrandDetai
                 break;
         }
 
+        appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }
 
     @Override
@@ -151,6 +161,12 @@ public class BrandDetailActivity extends AppCompatActivity implements BrandDetai
         user = appContext.user;
 
         reload();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appContext.localBroadcastManager.unregisterReceiver(broadcastReceiver);
     }
 
     private void reload() {
