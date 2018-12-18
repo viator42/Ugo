@@ -8,6 +8,9 @@ import android.view.WindowManager;
 
 import com.viator42.ugo.module.mainpage.MainpageActivity;
 import com.viator42.ugo.module.ref.RefAction;
+import com.viator42.ugo.utils.CommonUtils;
+
+import java.util.HashMap;
 
 public class
 StartActivity extends AppCompatActivity {
@@ -24,6 +27,10 @@ StartActivity extends AppCompatActivity {
 
         appContext = (AppContext) getApplicationContext();
         appContext.user = new RefAction().getUser(this);
+
+        HashMap<String, Object> channelInfo = CommonUtils.getChannelInfo(this);
+        CommonUtils.log(String.valueOf(channelInfo.get("channel_id")));
+        CommonUtils.log(String.valueOf(channelInfo.get("app_name")));
 
         new SplashTask().start();
 

@@ -1,6 +1,9 @@
 package com.viator42.ugo.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.util.Base64;
 import android.util.Log;
@@ -72,4 +75,23 @@ public class CommonUtils {
         return Base64.decode(str.getBytes(), Base64.DEFAULT);
     }
 
+    /**
+     * 获取渠道信息
+     */
+    public static HashMap<String, Object> getChannelInfo(Context context) {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+
+        String pkgName = context.getPackageName();
+        try {
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(pkgName, PackageManager.GET_META_DATA);
+            Bundle metaData = applicationInfo.metaData;
+            result.put("channel_id", metaData.get("channel_id"));
+            result.put("app_name", metaData.get("app_name"));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

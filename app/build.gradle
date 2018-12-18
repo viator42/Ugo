@@ -21,6 +21,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        qihu360 {
+            manifestPlaceholders=[
+                    channel_id: "1000",
+                    app_name: "UGou_360定制版",
+            ]
+
+        }
+        wandoujia {
+            manifestPlaceholders=[
+                    channel_id: "1001",
+                    app_name: "UGou_豌豆荚定制版",
+            ]
+        }
+//        productFlavors.all {
+//            flavor -> flavor.manifestPlaceholders =[channel: name]
+//        }
+    }
+
 }
 
 dependencies {

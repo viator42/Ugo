@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 
@@ -16,6 +18,8 @@ import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.user.LoginActivity;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.HashMap;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
