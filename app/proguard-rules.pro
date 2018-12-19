@@ -134,3 +134,7 @@
 # Uncomment this if you use Mockito
 -dontwarn org.mockito.**
 
+#---------------------dagger2---------------------
+-keep class com.google.errorprone.annotations.** { *; }
+-dontwarn com.google.errorprone.annotations.**
+
