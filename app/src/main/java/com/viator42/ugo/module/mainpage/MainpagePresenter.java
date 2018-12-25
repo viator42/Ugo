@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -39,6 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainpagePresenter implements MainpageContract.Presenter {
     private final MainpageContract.View view;
 
+    @Inject
     public MainpagePresenter(
         MainpageContract.View view) {
             this.view = view;

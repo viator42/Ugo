@@ -42,15 +42,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MainpageFragment extends Fragment implements MainpageContract.View {
-    private MainpagePresenter mainpagePresenter;
+    private AppContext appContext;
+    @Inject
+    MainpagePresenter mainpagePresenter;
     private ExpRecyclerView homeReListView;
     private HomeReAdapter homeReAdapter;
     private GridLayoutManager gridLayoutManager;
-    private AppContext appContext;
     private TimeoutbleProgressDialog loadingDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
     private NestedScrollView scrollView;
@@ -62,8 +65,7 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
     private List<Map<String,Object>> homeReList;
 
     public MainpageFragment() {
-        // Required empty public constructor
-        mainpagePresenter = new MainpagePresenter(MainpageFragment.this);
+//        mainpagePresenter = new MainpagePresenter(MainpageFragment.this);
     }
 
     @Override
@@ -71,6 +73,12 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
         super.onCreate(savedInstanceState);
 
         appContext = (AppContext) getActivity().getApplicationContext();
+
+        DaggerMainpageActivityComponent.builder()
+                .mainpagePresenterModule(new MainpagePresenterModule(this))
+                .appComponent(appContext.appComponent)
+                .build()
+                .inject(this);
 
     }
 

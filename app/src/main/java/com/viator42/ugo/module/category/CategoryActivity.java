@@ -32,8 +32,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 public class CategoryActivity extends BaseActivity implements CategoryContract.View {
-    private CategoryPresenter presenter;
+    @Inject
+    CategoryPresenter presenter;
 
     private RecyclerView goodsListView;
     private User user;
@@ -87,14 +90,6 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
             }
         });
 
-//        presenter = new CategoryPresenter(CategoryActivity.this);
-
-//        Bundle bundle = getIntent().getExtras();
-//        categoryId = bundle.getLong("id");
-//        categoryName = bundle.getString("name");
-//
-//        toolbar.setTitle(categoryName);
-
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_left_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -108,6 +103,13 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
 
         appContext.eventBus.register(this);
         appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
+
+        DaggerCategoryActivityComponent.builder()
+                .categoryPresenterModule(new CategoryPresenterModule(this))
+                .appComponent(appContext.appComponent)
+                .build()
+                .inject(this);
+
     }
 
     @Override

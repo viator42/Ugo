@@ -5,6 +5,8 @@ import com.viator42.ugo.EnvValues;
 import com.viator42.ugo.module.category.param.CategoryGoodsParam;
 import com.viator42.ugo.module.category.result.CategoryGoodsResult;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -17,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CategoryPresenter implements CategoryContract.Presenter{
     CategoryContract.View view;
 
+    @Inject
     public CategoryPresenter(CategoryContract.View view) {
         this.view = view;
     }
