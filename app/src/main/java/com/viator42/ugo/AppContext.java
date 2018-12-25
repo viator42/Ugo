@@ -21,6 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
+import dagger.android.DaggerApplication;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -32,6 +33,7 @@ public class AppContext extends Application {
     public RequestOptions glideRequestOptions;
     public LocalBroadcastManager localBroadcastManager;
     public EventBus eventBus;
+    public AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -90,6 +92,7 @@ public class AppContext extends Application {
                 .sendNoSubscriberEvent(true)
                 .build();
 
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 
     @Override

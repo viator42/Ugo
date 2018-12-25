@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.aboutus.AboutUsActivity;
+import com.viator42.ugo.module.dev.DevActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +62,16 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        Preference dev = findPreference("dev");
+        dev.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), DevActivity.class));
+                return true;
+            }
+        });
+
 
     }
 

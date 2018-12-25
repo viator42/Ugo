@@ -16,4 +16,8 @@
         android:key="logout"
         android:title="@string/logout" />
 
+    <Preference
+        android:key="dev"
+        android:title="@string/dev" />
+
 </PreferenceScreen>

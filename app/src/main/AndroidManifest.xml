@@ -58,7 +58,9 @@
             android:label="@string/title_activity_goods"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".module.dev.DevActivity" />
+        <activity
+            android:launchMode="singleTop"
+            android:name=".module.dev.DevActivity" />
         <activity
             android:name=".module.order.OrderConfirmActivity"
             android:label="@string/title_activity_order_confirm"

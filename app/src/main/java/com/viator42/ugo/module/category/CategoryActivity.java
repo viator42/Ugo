@@ -34,6 +34,7 @@ import java.util.Map;
 
 public class CategoryActivity extends BaseActivity implements CategoryContract.View {
     private CategoryPresenter presenter;
+
     private RecyclerView goodsListView;
     private User user;
     private int currentGoodsCount;
@@ -86,7 +87,7 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
             }
         });
 
-        presenter = new CategoryPresenter(CategoryActivity.this);
+//        presenter = new CategoryPresenter(CategoryActivity.this);
 
 //        Bundle bundle = getIntent().getExtras();
 //        categoryId = bundle.getLong("id");

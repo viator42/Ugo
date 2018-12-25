@@ -9,40 +9,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.tclocation.TcLocation;
+import com.viator42.ugo.utils.CommonUtils;
 
-public class DevActivity extends AppCompatActivity {
-    private Button locationList;
+import javax.inject.Inject;
+
+public class DevActivity extends AppCompatActivity implements DevContract.View {
+    private AppContext appContext;
+//    @Inject
+//    Computer computer;
+    @Inject
+    DevPresenter devPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dev);
 
-        locationList = findViewById(R.id.location_list);
-        locationList.setOnClickListener(new View.OnClickListener() {
+        appContext = (AppContext) getApplicationContext();
 
-            @Override
-            public void onClick(View v) {
-                new TcLocation().listAll();
-//                int i = ContextCompat.checkSelfPermission(DevActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//                if(i == PackageManager.PERMISSION_GRANTED) {
-//                    new TcLocation().listAll();
-//                }
-
-            }
-        });
+        DaggerDevActivityComponent.builder().presenterModule(new PresenterModule(this)).appComponent(appContext.appComponent).build().inject(this);
+//        DaggerMainComponent.builder().minePresenterModule(new MinePresenterModule(mineFragment)).appComponent(SampleApplication.getInstance().getAppComponent()).build().inject(this);
+//        DaggerDevActivityComponent.create().inject(this);
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    protected void onStart() {
+        super.onStart();
 
-        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            new TcLocation().listAll();
-        }
+        CommonUtils.makeToast(this, devPresenter.iamHere());
+//        CommonUtils.makeToast(this, computer.display());
 
     }
 }
