@@ -19,9 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="channel_id" android:value="${channel_id}"></meta-data>
-        <meta-data android:name="app_name" android:value="${app_name}"></meta-data>
+        <meta-data
+            android:name="channel_id"
+            android:value="${channel_id}" />
+        <meta-data
+            android:name="app_name"
+            android:value="${app_name}" />
 
         <activity
             android:name=".StartActivity"
@@ -59,8 +62,8 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:launchMode="singleTop"
-            android:name=".module.dev.DevActivity" />
+            android:name=".module.dev.DevActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".module.order.OrderConfirmActivity"
             android:label="@string/title_activity_order_confirm"
@@ -124,7 +127,11 @@
             android:name=".module.aboutus.AboutUsActivity"
             android:label="@string/about_us"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.dev.BindingTesterActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".module.dev.BindingListTesterActivity"></activity>
     </application>
 
 </manifest>

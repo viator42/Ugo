@@ -15,31 +15,57 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable = true
+        }
+        staging.initWith(buildTypes.debug)
+        staging {
+            applicationIdSuffix "-staging"
+            versionNameSuffix "-staging"
+            buildConfigField "String", "API_URL", "http://api.ugouchina.com/"
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable = false
         }
     }
 
     flavorDimensions "default"
     productFlavors {
         qihu360 {
-            manifestPlaceholders=[
+            manifestPlaceholders = [
                     channel_id: "1000",
-                    app_name: "UGou_360定制版",
+                    app_name  : "UGou_360定制版",
             ]
 
         }
         wandoujia {
-            manifestPlaceholders=[
+            manifestPlaceholders = [
                     channel_id: "1001",
-                    app_name: "UGou_豌豆荚定制版",
+                    app_name  : "UGou_豌豆荚定制版",
             ]
         }
 //        productFlavors.all {
 //            flavor -> flavor.manifestPlaceholders =[channel: name]
 //        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    task hello {
+        println 'Ugou gradle running'
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def file = output.outputFile
+            println "apk file name is: ${output.outputFile.name}"
+//            output.outputFile.name.replace(".apk", "-${variant.versionName}.apk")
+//            output.outputFile = new File(file.parent, file.name.replace(".apk", "-${variant.versionName}.apk"))
+            outputFileName = "${variant.name}-${variant.versionName}.apk"
+        }
     }
 
 }
@@ -72,6 +98,7 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.+'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.+'
     implementation 'com.google.dagger:dagger-android:2.+'
-    implementation 'com.google.dagger:dagger-android-support:2.+' // if you use the support libraries
+    implementation 'com.google.dagger:dagger-android-support:2.+'
+    // if you use the support libraries
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.+'
 }

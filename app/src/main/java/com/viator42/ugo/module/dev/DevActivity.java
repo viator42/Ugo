@@ -1,6 +1,7 @@
 package com.viator42.ugo.module.dev;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +19,9 @@ import javax.inject.Inject;
 
 public class DevActivity extends AppCompatActivity implements DevContract.View {
     private AppContext appContext;
+    Button bindingTestBtn;
+    Button bindingListTestBtn;
+
 //    @Inject
 //    Computer computer;
     @Inject
@@ -33,6 +37,22 @@ public class DevActivity extends AppCompatActivity implements DevContract.View {
         DaggerDevActivityComponent.builder().presenterModule(new PresenterModule(this)).appComponent(appContext.appComponent).build().inject(this);
 //        DaggerMainComponent.builder().minePresenterModule(new MinePresenterModule(mineFragment)).appComponent(SampleApplication.getInstance().getAppComponent()).build().inject(this);
 //        DaggerDevActivityComponent.create().inject(this);
+
+        bindingTestBtn = findViewById(R.id.binding_test);
+        bindingTestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DevActivity.this, BindingTesterActivity.class));
+            }
+        });
+
+        bindingListTestBtn = findViewById(R.id.binding_list_test);
+        bindingListTestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DevActivity.this, BindingListTesterActivity.class));
+            }
+        });
 
     }
 

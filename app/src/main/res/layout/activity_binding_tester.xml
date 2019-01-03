@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+    <data>
+        <variable
+            name="swordman"
+            type="com.viator42.ugo.module.dev.Swordman" />
+        <variable
+            name="goods_name"
+            type="String"
+            ></variable>
+        <variable
+            name="goods_img"
+            type="String"
+            ></variable>
+        <variable
+            name="price"
+            type="double"
+            ></variable>
+        <variable
+            name="count"
+            type="int"
+            ></variable>
+
+    </data>
+    <TableLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".module.dev.BindingTesterActivity">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{swordman.name}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{swordman.level}" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/swordman_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={swordman.name}" />
+
+            <EditText
+                android:id="@+id/swordman_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={swordman.level}" />
+
+        </TableRow>
+        <Button
+            android:id="@+id/fetch_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fetch" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+</layout>
