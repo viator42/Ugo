@@ -20,4 +20,12 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/binding_test"
         android:text="binding_list_test" />
+
+    <Button
+        android:id="@+id/multi_mudule_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/binding_test"
+        android:layout_alignParentStart="true"
+        android:text="multi_mudule_test" />
 </RelativeLayout>

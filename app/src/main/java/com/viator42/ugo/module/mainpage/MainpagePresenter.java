@@ -1,12 +1,6 @@
 package com.viator42.ugo.module.mainpage;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.bumptech.glide.RequestBuilder;
 import com.google.gson.Gson;
-import com.viator42.ugo.AppContext;
 import com.viator42.ugo.EnvValues;
 import com.viator42.ugo.module.mainpage.param.HomeParam;
 import com.viator42.ugo.module.mainpage.param.HomeReParam;
@@ -16,7 +10,6 @@ import com.viator42.ugo.utils.CommonUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -24,9 +17,7 @@ import javax.inject.Inject;
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.CacheControl;

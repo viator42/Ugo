@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.viator42.ugo.EnvValues;
 import com.viator42.ugo.module.address.param.DeleteAddressParam;
 import com.viator42.ugo.module.address.param.InsertAddressParam;
-import com.viator42.ugo.module.address.result.DeleteAddressResult;
 import com.viator42.ugo.module.address.result.InsertAddressResult;
-import com.viator42.ugo.module.address.result.LoadResult;
 import com.viator42.ugo.utils.CommonUtils;
 
 import io.reactivex.SingleObserver;

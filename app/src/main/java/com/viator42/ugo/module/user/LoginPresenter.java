@@ -2,17 +2,11 @@ package com.viator42.ugo.module.user;
 
 import com.google.gson.Gson;
 import com.viator42.ugo.EnvValues;
-import com.viator42.ugo.module.ref.RefAction;
-import com.viator42.ugo.module.theme.ThemeActions;
-import com.viator42.ugo.module.theme.param.ThemeParam;
-import com.viator42.ugo.module.theme.result.ThemeResult;
 import com.viator42.ugo.module.user.param.LoginParam;
 import com.viator42.ugo.module.user.result.LoginResult;
-import com.viator42.ugo.utils.AESOperator;
 import com.viator42.ugo.utils.CommonUtils;
 
 import io.reactivex.Observer;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;

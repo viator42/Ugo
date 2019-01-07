@@ -1,21 +1,15 @@
 package com.viator42.ugo.module.address;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.viator42.ugo.EnvValues;
 import com.viator42.ugo.module.address.param.LoadParam;
 import com.viator42.ugo.module.address.result.LoadResult;
-import com.viator42.ugo.module.mainpage.MainpageActions;
-import com.viator42.ugo.module.mainpage.result.HomeResult;
 import com.viator42.ugo.utils.CommonUtils;
 
-import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

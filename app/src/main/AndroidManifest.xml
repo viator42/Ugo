@@ -131,7 +131,8 @@
         <activity
             android:name=".module.dev.BindingTesterActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".module.dev.BindingListTesterActivity"></activity>
+        <activity android:name=".module.dev.BindingListTesterActivity" />
+        <activity android:name=".module.dev.MultiModuleTestActivity"></activity>
     </application>
 
 </manifest>

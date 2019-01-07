@@ -1,10 +1,6 @@
 package com.viator42.ugo.module.dev;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +8,6 @@ import android.widget.Button;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
-import com.viator42.ugo.module.tclocation.TcLocation;
 import com.viator42.ugo.utils.CommonUtils;
 
 import javax.inject.Inject;
@@ -21,6 +16,7 @@ public class DevActivity extends AppCompatActivity implements DevContract.View {
     private AppContext appContext;
     Button bindingTestBtn;
     Button bindingListTestBtn;
+    Button multiMuduleTest;
 
 //    @Inject
 //    Computer computer;
@@ -51,6 +47,14 @@ public class DevActivity extends AppCompatActivity implements DevContract.View {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DevActivity.this, BindingListTesterActivity.class));
+            }
+        });
+
+        multiMuduleTest = findViewById(R.id.multi_mudule_test);
+        multiMuduleTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DevActivity.this, MultiModuleTestActivity.class));
             }
         });
 

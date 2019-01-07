@@ -2,7 +2,6 @@ package com.viator42.ugo.module.theme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.viator42.ugo.R;
-import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Theme;
-import com.viator42.ugo.module.mainpage.HomeReAdapter;
 import com.viator42.ugo.module.webview.WebviewActivity;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
