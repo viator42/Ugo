@@ -1,6 +1,8 @@
 package com.viator42.ugo.module.settings;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -13,7 +15,9 @@ import android.view.ViewGroup;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.aboutus.AboutUsActivity;
+import com.viator42.ugo.module.branddetail.BrandDetailActivity;
 import com.viator42.ugo.module.dev.DevActivity;
+import com.viator42.ugo.module.user.LoginActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +63,21 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage(R.string.needs_login);
+//                builder.setTitle(R.string.tip);
+//                builder.setPositiveButton(getResources().getString(R.string.login), new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
+//
+//                        Intent intent = new Intent(BrandDetailActivity.this, LoginActivity.class);
+//                        startActivity(intent);
+//
+//                    }
+//                });
+//                builder.setNegativeButton(getResources().getString(R.string.cancel), null);
+//                builder.create().show();
                 return true;
             }
         });
@@ -72,7 +91,11 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
             }
         });
 
+    }
+
+    private void logout() {
 
     }
+
 
 }

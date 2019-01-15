@@ -20,6 +20,8 @@ import com.viator42.ugo.module.user.LoginContract;
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.user.param.LoginParam;
 import com.viator42.ugo.module.user.result.LoginResult;
+import com.viator42.ugo.utils.CommonUtils;
+import com.viator42.ugo.utils.TimeoutbleProgressDialog;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private EditText telEditText;
@@ -27,6 +29,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private Button loginBtn;
     private LoginPresenter loginPresenter;
     private AppContext appContext;
+    private TimeoutbleProgressDialog loginDialog;
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -68,6 +71,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             }
         });
 
+        loginDialog = TimeoutbleProgressDialog.createProgressDialog(LoginActivity.this, StaticValues.CONNECTION_TIMEOUT, new TimeoutbleProgressDialog.OnTimeOutListener() {
+            @Override
+            public void onTimeOut(TimeoutbleProgressDialog dialog) {
+                loginDialog.dismiss();
+                CommonUtils.makeToast(LoginActivity.this, "加载内容失败");
+            }
+        });
+
         loginPresenter = new LoginPresenter(LoginActivity.this);
 
         appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
@@ -87,13 +98,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void loginOnprogress() {
-
+    public void loginFailed(String msg) {
+        if (msg != null) {
+            CommonUtils.makeToast(LoginActivity.this, R.string.load_failed);
+        }
+        else {
+            CommonUtils.makeToast(LoginActivity.this, msg);
+        }
     }
 
     @Override
-    public void loginFailed() {
-
+    public void setProgressingDialog(boolean flag) {
+        if (flag) {
+            loginDialog.show();
+        }
+        else {
+            loginDialog.dismiss();
+        }
     }
 
     @Override

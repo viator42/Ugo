@@ -215,8 +215,36 @@ public class MainpageFragment extends Fragment implements MainpageContract.View 
     }
 
     @Override
-    public void setProgressingDialog(boolean isShow) {
-        if(isShow) {
+    public void loadHomeSuccess() {
+    }
+
+    @Override
+    public void loadHomeFailed(String msg) {
+        if (msg != null) {
+            CommonUtils.makeToast(getContext(), R.string.load_failed);
+        }
+        else {
+            CommonUtils.makeToast(getContext(), msg);
+        }
+    }
+
+    @Override
+    public void loadHomeReSuccess() {
+    }
+
+    @Override
+    public void loadHomeReFailed(String msg) {
+        if (msg != null) {
+            CommonUtils.makeToast(getContext(), R.string.load_failed);
+        }
+        else {
+            CommonUtils.makeToast(getContext(), msg);
+        }
+    }
+
+    @Override
+    public void setProgressingDialog(boolean flag) {
+        if (flag) {
             loadingDialog.show();
         }
         else {

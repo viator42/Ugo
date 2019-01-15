@@ -45,11 +45,11 @@ public class MainpagePresenter implements MainpageContract.Presenter {
         cacheBuilder.maxStale(365,TimeUnit.DAYS);//这个是控制缓存的过时时间
         final CacheControl cacheControl = cacheBuilder.build();
 
-        File cacheFile = new File(view.getContext().getCacheDir(), "ugou");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+//        File cacheFile = new File(view.getContext().getCacheDir(), "ugou");
+//        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
+//                .cache(cache)
                 .addInterceptor(new Interceptor() {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -75,8 +75,6 @@ public class MainpagePresenter implements MainpageContract.Presenter {
         Gson gson = new Gson();
         String paramStr = gson.toJson(homeParam);
 
-        CommonUtils.log(paramStr);
-
         MainpageActions mainpageActions = retrofit.create(MainpageActions.class);
 
         mainpageActions.home(paramStr)
@@ -85,23 +83,30 @@ public class MainpagePresenter implements MainpageContract.Presenter {
                 .subscribe(new Observer<Response<HomeResult>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
+                        view.setProgressingDialog(true);
                     }
 
                     @Override
                     public void onNext(Response<HomeResult> homeResultResponse) {
                         HomeResult homeResult = homeResultResponse.body();
-                        homeResult.aesKey = homeResultResponse.headers().get("Set-Cookie");
-                        view.listHome(homeResult);
+                        if (homeResult.success) {
+                            view.loadHomeSuccess();
+                            homeResult.aesKey = homeResultResponse.headers().get("Set-Cookie");
+                            view.listHome(homeResult);
+                        }
+                        else {
+                            view.loadHomeFailed(homeResult.msg);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        view.loadHomeFailed(null);
                     }
 
                     @Override
                     public void onComplete() {
-
+                        view.setProgressingDialog(false);
                     }
                 });
 
@@ -132,12 +137,19 @@ public class MainpagePresenter implements MainpageContract.Presenter {
                     @Override
                     public void onSuccess(@io.reactivex.annotations.NonNull HomeReResult homeReResult) {
                         view.setProgressingDialog(false);
-                        view.listHomeRe(homeReResult.data);
+                        if (homeReResult.success) {
+                            view.loadHomeReSuccess();
+                            view.listHomeRe(homeReResult.data);
+                        }
+                        else {
+                            view.loadHomeReFailed(homeReResult.msg);
+                        }
                     }
 
                     @Override
                     public void onError(@io.reactivex.annotations.NonNull Throwable e) {
                         view.setProgressingDialog(false);
+                        view.loadHomeReFailed(null);
                     }
                 });
 

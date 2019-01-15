@@ -69,6 +69,7 @@
     <string name="about_website">官方网站</string>
     <string name="about_tel">请在此输入对U购的建议或者报告问题</string>
     <string name="load_category_failed">获取分类失败</string>
+    <string name="load_failed">载入失败</string>
 
     <string name="co_tel">0531-68826667</string>
     <string name="co_website">www.ugochina.com</string>

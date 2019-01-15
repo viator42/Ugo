@@ -7,8 +7,8 @@ import com.viator42.ugo.module.user.result.LoginResult;
 public interface LoginContract {
     interface View extends BaseView<LoginContract.Presenter> {
         void loginSuccess(LoginResult loginResult);
-        void loginOnprogress();
-        void loginFailed();
+        void loginFailed(String msg);
+        void setProgressingDialog(boolean flag);
     }
 
 

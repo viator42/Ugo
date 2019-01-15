@@ -17,7 +17,11 @@ public interface MainpageContract {
         Context getContext();
         void listHome(HomeResult homeResult);
         void listHomeRe(ArrayList<HomeReItem> homeReItems);
-        void setProgressingDialog(boolean isShow);
+        void loadHomeSuccess();
+        void loadHomeFailed(String msg);
+        void loadHomeReSuccess();
+        void loadHomeReFailed(String msg);
+        void setProgressingDialog(boolean flag);
     }
 
     interface Presenter {

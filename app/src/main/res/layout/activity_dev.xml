@@ -28,4 +28,12 @@
         android:layout_below="@+id/binding_test"
         android:layout_alignParentStart="true"
         android:text="multi_mudule_test" />
+
+    <Button
+        android:id="@+id/lru_cache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/binding_test"
+        android:layout_toEndOf="@+id/multi_mudule_test"
+        android:text="lru_cache" />
 </RelativeLayout>

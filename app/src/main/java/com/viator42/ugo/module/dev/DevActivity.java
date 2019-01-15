@@ -17,6 +17,7 @@ public class DevActivity extends AppCompatActivity implements DevContract.View {
     Button bindingTestBtn;
     Button bindingListTestBtn;
     Button multiMuduleTest;
+    Button lruCacheBtn;
 
 //    @Inject
 //    Computer computer;
@@ -55,6 +56,14 @@ public class DevActivity extends AppCompatActivity implements DevContract.View {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DevActivity.this, MultiModuleTestActivity.class));
+            }
+        });
+
+        lruCacheBtn = findViewById(R.id.lru_cache);
+        lruCacheBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DevActivity.this, LruCacheActivity.class));
             }
         });
 

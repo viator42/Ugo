@@ -132,7 +132,11 @@
             android:name=".module.dev.BindingTesterActivity"
             android:launchMode="singleTop" />
         <activity android:name=".module.dev.BindingListTesterActivity" />
-        <activity android:name=".module.dev.MultiModuleTestActivity"></activity>
+        <activity android:name=".module.dev.MultiModuleTestActivity" />
+        <activity
+            android:name=".module.dev.LruCacheActivity"
+            android:label="缓存测试"
+            android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>
