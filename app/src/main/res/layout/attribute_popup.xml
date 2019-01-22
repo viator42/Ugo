@@ -23,7 +23,7 @@
         android:text="@string/goods_name" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/lb_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/goods_name"
@@ -31,21 +31,39 @@
         android:text="@string/price" />
 
     <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:layout_toRightOf="@+id/lb_price"
+        android:layout_below="@id/goods_name"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/lb_attribute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/goods_name"
+        android:layout_below="@id/lb_price"
+        android:text="@string/attribute" />
+
+    <TextView
         android:id="@+id/attribute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/price"
-        android:layout_below="@id/price"
-        android:text="@string/attribute" />
+        android:layout_toRightOf="@id/lb_attribute"
+        android:layout_below="@id/lb_price"
+        android:layout_marginLeft="@dimen/margin_stanard"
+        android:text="@string/attribute_none" />
 
     <TextView
         android:id="@+id/attribute_lb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/img"
         android:layout_below="@id/img"
+        android:layout_alignLeft="@id/img"
         android:layout_marginTop="@dimen/margin_stanard"
-        android:text="@string/color" />
+        android:text="@string/attribute_select" />
 
     <TextView
         android:id="@+id/color_lb"
@@ -60,24 +78,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/color_lb"
-        android:layout_margin="@dimen/margin_stanard">
-
-    </com.viator42.ugo.widget.FloatingView>
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_marginHorizontal="@dimen/margin_stanard" />
 
     <TextView
         android:id="@+id/size_lb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/colors"
         android:layout_below="@+id/colors"
-        android:text="@string/color" />
+        android:layout_alignLeft="@+id/colors"
+        android:text="@string/size" />
 
     <com.viator42.ugo.widget.FloatingView
         android:id="@+id/sizes"
+        android:layout_below="@id/size_lb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/colors"
-        android:layout_margin="@dimen/margin_stanard" />
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_marginHorizontal="@dimen/margin_stanard" />
 
     <Button
         android:id="@+id/confirm"

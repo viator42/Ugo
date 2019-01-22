@@ -40,4 +40,7 @@
 
     <color name="clickable_text">#2C9DE5</color>
 
+    <color name="attribute_checked">#00CC66</color>
+    <color name="attribute_unchecked">#ffffff</color>
+
 </resources>

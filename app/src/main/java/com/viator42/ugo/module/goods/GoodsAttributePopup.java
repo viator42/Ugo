@@ -6,16 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.Goods;
+import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 import com.viator42.ugo.widget.FloatingView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,6 +36,8 @@ public class GoodsAttributePopup extends PopupWindow
     private Context context;
     private Goods goods;
     HashMap<String, String[]> attributes;
+    final ArrayList<RadioButton> colorViewItems;
+    final ArrayList<RadioButton> sizeViewItems;
 
     private ImageView imgView;
     private TextView nameTextView;
@@ -43,7 +49,7 @@ public class GoodsAttributePopup extends PopupWindow
     private String sizeSelected;
     private String colorselected;
 
-    public GoodsAttributePopup(Context context, AttributeSet attrs, Goods goods, HashMap<String, String[]> attributes) {
+    public GoodsAttributePopup(final Context context, AttributeSet attrs, Goods goods, HashMap<String, String[]> attributes) {
         super(context, attrs);
         this.context = context;
         this.goods = goods;
@@ -59,6 +65,21 @@ public class GoodsAttributePopup extends PopupWindow
         colorsContainer = view.findViewById(R.id.colors);
         sizesContainer = view.findViewById(R.id.sizes);
         confirmBtn = view.findViewById(R.id.confirm);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CommonUtils.isValueEmpty(colorselected)) {
+                    CommonUtils.makeToast(context, R.string.choose_color);
+                    return;
+                }
+                if (CommonUtils.isValueEmpty(sizeSelected)) {
+                    CommonUtils.makeToast(context, R.string.choose_size);
+                    return;
+                }
+
+                returnSelectedAttribute();
+            }
+        });
 
         //set values
         GlideApp.with(context)
@@ -70,6 +91,9 @@ public class GoodsAttributePopup extends PopupWindow
 
         Set<String> colorSet = new HashSet();
         Set<String> sizeSet = new HashSet();
+
+        colorViewItems = new ArrayList<RadioButton>();
+        sizeViewItems = new ArrayList<RadioButton>();
 
         //attributes set
         Iterator attributesIterator = attributes.entrySet().iterator();
@@ -86,50 +110,110 @@ public class GoodsAttributePopup extends PopupWindow
 
         Iterator sizeIterator = sizeSet.iterator();
         while (sizeIterator.hasNext()) {
-            final TextView textView = new TextView(context);
-            textView.setText((String) sizeIterator.next());
+            String text = (String) sizeIterator.next();
+            final RadioButton sizeItemView = new RadioButton(context);
+            sizeItemView.setText(text);
             FloatingView.LayoutParams params = new FloatingView.LayoutParams(FloatingView.LayoutParams.WRAP_CONTENT,
                     FloatingView.LayoutParams.WRAP_CONTENT);
             params.setMargins(8, 8, 8, 8);
-            textView.setLayoutParams(params);
-            textView.setPadding(8, 8, 8, 8);
-            textView.setOnClickListener(new View.OnClickListener() {
+            sizeItemView.setLayoutParams(params);
+            sizeItemView.setPadding(16, 8, 16, 8);
+            sizeItemView.setButtonDrawable(null);
+            sizeItemView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    //设置尺寸
-                    sizeSelected = textView.getText().toString();
-                    setSelectedAttribute();
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    setAttributeChecked(buttonView, isChecked);
                 }
             });
-            sizesContainer.addView(textView);
+
+            sizeItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(RadioButton item: sizeViewItems) {
+                        item.setChecked(false);
+                    }
+                    sizeItemView.setChecked(true);
+
+                    //设置尺寸
+                    sizeSelected = sizeItemView.getText().toString();
+                    updateSelectedAttribute();
+                }
+            });
+
+            sizeViewItems.add(sizeItemView);
+            sizesContainer.addView(sizeItemView);
         }
 
         Iterator colorIterator = colorSet.iterator();
         while (colorIterator.hasNext()) {
-            final TextView textView = new TextView(context);
-            textView.setText((String) colorIterator.next());
+            String text = (String) colorIterator.next();
+            final RadioButton colorItemView = new RadioButton(context);
+            colorItemView.setText(text);
             FloatingView.LayoutParams params = new FloatingView.LayoutParams(FloatingView.LayoutParams.WRAP_CONTENT,
                     FloatingView.LayoutParams.WRAP_CONTENT);
             params.setMargins(8, 8, 8, 8);
-            textView.setLayoutParams(params);
-            textView.setPadding(8, 8, 8, 8);
-            textView.setOnClickListener(new View.OnClickListener() {
+            colorItemView.setLayoutParams(params);
+            colorItemView.setPadding(16, 8, 16, 8);
+            colorItemView.setButtonDrawable(null);
+            colorItemView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    //设置颜色
-                    colorselected = textView.getText().toString();
-                    setSelectedAttribute();
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    setAttributeChecked(buttonView, isChecked);
                 }
             });
-            colorsContainer.addView(textView);
+
+            colorItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(RadioButton item: colorViewItems) {
+                        item.setChecked(false);
+                    }
+                    colorItemView.setChecked(true);
+
+                    //设置颜色
+                    colorselected = colorItemView.getText().toString();
+                    updateSelectedAttribute();
+                }
+            });
+
+            colorViewItems.add(colorItemView);
+            colorsContainer.addView(colorItemView);
         }
 
         this.setContentView(view);
     }
 
-    private void setSelectedAttribute() {
+    private void setAttributeChecked(View view, boolean checked) {
+        if (checked) {
+            view.setBackground(context.getResources().getDrawable(R.drawable.rect_attribute_checked));
+        }
+        else {
+            view.setBackground(context.getResources().getDrawable(R.drawable.rect_attribute_unchecked));
+        }
+    }
+
+    public void setSelectedAttribute(String sizeSelected, String colorselected) {
+        this.colorselected = colorselected;
+        this.sizeSelected = sizeSelected;
+
+        updateSelectedAttribute();
+    }
+
+    private void updateSelectedAttribute() {
+        if (CommonUtils.isValueEmpty(sizeSelected)) {
+            sizeSelected = "";
+        }
+        if (CommonUtils.isValueEmpty(colorselected)) {
+            colorselected = "";
+        }
+
+        attributesTextView.setText("颜色:"+colorselected+" 尺码:"+sizeSelected);
+    }
+
+    private void returnSelectedAttribute() {
         GoodsActivity goodsActivity = (GoodsActivity) context;
         goodsActivity.setAttributeSelected(sizeSelected, colorselected);
+        GoodsAttributePopup.this.dismiss();
     }
 
 }

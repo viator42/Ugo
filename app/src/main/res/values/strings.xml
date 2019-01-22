@@ -32,9 +32,10 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="attribute_select">属性选择</string>
+    <string name="attribute_none">尚未选择</string>
     <string name="choose_size_color">点击选择颜色和尺寸</string>
-    <string name="choose_size">请选择颜色</string>
-    <string name="choose_color">请选择尺寸</string>
+    <string name="choose_size">请选择尺寸</string>
+    <string name="choose_color">请选择颜色</string>
     <string name="address_manage">地址管理</string>
     <string name="title_activity_order_confirm">订单确认</string>
     <string name="title_activity_address">地址列表</string>

@@ -90,22 +90,31 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/margin_stanard"
                 android:layout_marginHorizontal="@dimen/margin_stanard"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/attribute" />
-
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/clickable_min_height"
-                android:layout_margin="@dimen/margin_stanard"
-                android:textColor="@color/text_grey"
-                android:text="@string/choose_size_color"
-                android:gravity="center_vertical"
-                android:id="@+id/attribute" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_stanard"
+                    android:layout_marginHorizontal="@dimen/margin_stanard"
+                    android:text="@string/attribute" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/clickable_min_height"
+                    android:layout_margin="@dimen/margin_stanard"
+                    android:textColor="@color/text_grey"
+                    android:text="@string/choose_size_color"
+                    android:gravity="center_vertical"
+                    android:id="@+id/attribute" />
+
+            </LinearLayout>
+
 
             <TableRow
                 android:layout_width="match_parent"
@@ -127,6 +136,11 @@
 
     </ScrollView>
 
-
-
+    <View
+        android:id="@+id/bg_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:background="@color/bg_black"
+        android:visibility="gone" />
 </FrameLayout>

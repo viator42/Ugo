@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ import java.util.HashMap;
              finish();
          }
      };
+     private View bgCoverView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,15 @@ import java.util.HashMap;
 //        attributesTextView = findViewById(R.id.attributes);
 
         rootView = findViewById(android.R.id.content);
+
+        bgCoverView = findViewById(R.id.bg_cover);
+        bgCoverView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setVisibility(View.GONE);
+                v.startAnimation(AnimationUtils.loadAnimation(GoodsActivity.this, R.anim.wrap_fade_enter_out));
+            }
+        });
 
         attributeTextView = findViewById(R.id.attribute);
         attributeTextView.setOnClickListener(new View.OnClickListener() {
@@ -281,22 +292,32 @@ import java.util.HashMap;
      /**
       * 唤起属性选择
       */
-     private void callAttributePopup()
-     {
+     private void callAttributePopup() {
          if(goodsAttributePopup == null)
          {
              goodsAttributePopup = new GoodsAttributePopup(GoodsActivity.this, null, goods, attributes);
              goodsAttributePopup.setOutsideTouchable(true);
+             goodsAttributePopup.setAnimationStyle(R.style.popwindow_anim_style);
          }
          goodsAttributePopup.showAtLocation(rootView, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+         goodsAttributePopup.setSelectedAttribute(sizeSelected, colorSelected);
+         bgCoverView.setVisibility(View.VISIBLE);
+         bgCoverView.startAnimation(AnimationUtils.loadAnimation(GoodsActivity.this, R.anim.wrap_fade_enter_in));
      }
 
+     /**
+      * 设置选择的属性
+      * @param sizeSelected
+      * @param colorSelected
+      */
      public void setAttributeSelected(String sizeSelected, String colorSelected) {
          this.sizeSelected = sizeSelected;
          this.colorSelected = colorSelected;
 
          this.attributeSelected = "颜色:"+colorSelected+" 尺码:"+sizeSelected;
          attributeTextView.setText(this.attributeSelected);
+         bgCoverView.setVisibility(View.GONE);
+         bgCoverView.startAnimation(AnimationUtils.loadAnimation(GoodsActivity.this, R.anim.wrap_fade_enter_out));
      }
 
      private void buyit() {
