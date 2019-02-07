@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.aboutus.AboutUsActivity;
+import com.viator42.ugo.module.address.AddressActivity;
 import com.viator42.ugo.module.branddetail.BrandDetailActivity;
 import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.user.LoginActivity;
@@ -38,6 +39,7 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
         addressManage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), AddressActivity.class));
                 return true;
             }
         });
