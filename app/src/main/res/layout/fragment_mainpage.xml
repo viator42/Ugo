@@ -29,10 +29,11 @@
                     android:text="@string/category" />
 
                 <HorizontalScrollView
-                    android:scrollbars="none"
-                    android:background="@color/bg_white"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/category_item_height"
+                    android:background="@color/bg_white"
+                    android:scrollbars="none">
 
                     <LinearLayout
                         android:id="@+id/category"
@@ -51,7 +52,7 @@
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="@dimen/recommend_item_size">
 
                     <LinearLayout
                         android:id="@+id/recommend"
@@ -70,7 +71,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/activity_item_height">
 
                     <LinearLayout
                         android:id="@+id/activity"

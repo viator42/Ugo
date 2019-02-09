@@ -58,6 +58,7 @@ public class ScaleImageViewActivity extends AppCompatActivity {
         });
 
         imgView = findViewById(R.id.img);
+        imgView.setActivity(ScaleImageViewActivity.this);
 
         appContext.localBroadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(StaticValues.BROADCAST_EXIT));
     }

@@ -1,5 +1,6 @@
 package com.viator42.ugo.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,12 @@ import android.view.ScaleGestureDetector.OnScaleGestureListener;
  * double-tap gestures.
  */
 public class ScaleImageView extends android.support.v7.widget.AppCompatImageView {
+    private Activity activity;
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
     /**
      * Options for arranging the image when scaled image size is smaller than
      * view.
@@ -200,6 +207,14 @@ public class ScaleImageView extends android.support.v7.widget.AppCompatImageView
             mAnimator.startScaleAnimation(targetScale, e.getX(), e.getY());
             return true;
         }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            if (activity != null) {
+                activity.finish();
+            }
+            return true;
+        }
     }
 
     private class ScaleGestureListener implements OnScaleGestureListener {
@@ -335,4 +350,5 @@ public class ScaleImageView extends android.support.v7.widget.AppCompatImageView
             invalidate();
         }
     }
+
 }

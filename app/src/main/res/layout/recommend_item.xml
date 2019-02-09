@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:paddingLeft="4dp"
-    android:paddingTop="4dp">
+    android:orientation="vertical" android:layout_width="@dimen/recommend_item_size"
+    android:layout_height="@dimen/recommend_item_size"
+    android:paddingLeft="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small">
 
     <ImageView
         android:layout_width="fill_parent"
