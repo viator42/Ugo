@@ -102,6 +102,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/sizes"
+        android:textColor="@color/text_white"
+        android:background="@color/button_bg"
         android:layout_margin="@dimen/margin_stanard"
         android:text="@string/confirm" />
 </RelativeLayout>

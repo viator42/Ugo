@@ -13,21 +13,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.aboutus.AboutUsActivity;
 import com.viator42.ugo.module.address.AddressActivity;
 import com.viator42.ugo.module.branddetail.BrandDetailActivity;
 import com.viator42.ugo.module.dev.DevActivity;
+import com.viator42.ugo.module.ref.RefAction;
 import com.viator42.ugo.module.user.LoginActivity;
+import com.viator42.ugo.utils.CommonUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SettingsPreferenceFragment extends PreferenceFragment {
-
+    private AppContext appContext;
+    private User user;
 
     public SettingsPreferenceFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -39,6 +43,10 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
         addressManage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                if(user == null) {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                    return true;
+                }
                 startActivity(new Intent(getActivity(), AddressActivity.class));
                 return true;
             }
@@ -65,21 +73,25 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setMessage(R.string.needs_login);
-//                builder.setTitle(R.string.tip);
-//                builder.setPositiveButton(getResources().getString(R.string.login), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        dialogInterface.dismiss();
-//
-//                        Intent intent = new Intent(BrandDetailActivity.this, LoginActivity.class);
-//                        startActivity(intent);
-//
-//                    }
-//                });
-//                builder.setNegativeButton(getResources().getString(R.string.cancel), null);
-//                builder.create().show();
+                if (user != null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(R.string.logout_confirm);
+                    builder.setTitle(R.string.tip);
+                    builder.setPositiveButton(getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            logout();
+
+                        }
+                    });
+                    builder.setNegativeButton(getResources().getString(R.string.cancel), null);
+                    builder.create().show();
+
+                }
+                else {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                }
                 return true;
             }
         });
@@ -93,11 +105,15 @@ public class SettingsPreferenceFragment extends PreferenceFragment {
             }
         });
 
+        appContext = (AppContext) getActivity().getApplicationContext();
+        user = appContext.user;
     }
 
     private void logout() {
-
+        new RefAction().removeUser(getActivity());
+        appContext.user = null;
+        getActivity().finish();
+        startActivity(new Intent(getActivity(), LoginActivity.class));
     }
-
 
 }

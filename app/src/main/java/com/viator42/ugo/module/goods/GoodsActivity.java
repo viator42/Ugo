@@ -115,6 +115,19 @@ import java.util.HashMap;
             }
         });
 
+        addToCartBtn = findViewById(R.id.add_to_cart);
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user != null) {
+                    addToCart();
+                }
+                else {
+                    CommonUtils.makeToast(GoodsActivity.this, R.string.needs_login);
+                }
+            }
+        });
+
         appContext = (AppContext) getApplicationContext();
 
 //        Bundle bundle = getIntent().getExtras();
@@ -320,28 +333,30 @@ import java.util.HashMap;
          bgCoverView.startAnimation(AnimationUtils.loadAnimation(GoodsActivity.this, R.anim.wrap_fade_enter_out));
      }
 
-     private void buyit() {
-         if(CommonUtils.isValueEmpty(sizeSelected)) {
-             CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.choose_size));
-             return;
-         }
+     private void addToCart() {
          if (CommonUtils.isValueEmpty(colorSelected)) {
-             CommonUtils.makeToast(GoodsActivity.this, getResources().getString(R.string.choose_color));
+             CommonUtils.makeToast(GoodsActivity.this, R.string.choose_color);
+             return;
+         }
+         if(CommonUtils.isValueEmpty(sizeSelected)) {
+             CommonUtils.makeToast(GoodsActivity.this, R.string.choose_size);
              return;
          }
 
-         goods.attribute = attributeSelected;
+         CommonUtils.makeToast(GoodsActivity.this, R.string.incomplete);
 
-         Intent intent = new Intent(GoodsActivity.this, OrderConfirmActivity.class);
-
-         ArrayList<Goods> goodsList = new ArrayList<Goods>();
-         goodsList.add(goods);
-
-         Bundle bundle = new Bundle();
-         bundle.putParcelableArrayList("goods", goodsList);
-
-         intent.putExtras(bundle);
-         startActivity(intent);
+//         goods.attribute = attributeSelected;
+//
+//         Intent intent = new Intent(GoodsActivity.this, OrderConfirmActivity.class);
+//
+//         ArrayList<Goods> goodsList = new ArrayList<Goods>();
+//         goodsList.add(goods);
+//
+//         Bundle bundle = new Bundle();
+//         bundle.putParcelableArrayList("goods", goodsList);
+//
+//         intent.putExtras(bundle);
+//         startActivity(intent);
      }
 
      /**
@@ -365,13 +380,4 @@ import java.util.HashMap;
          builder.create().show();
      }
 
-//     private void callAttributePopup(int type)
-//     {
-//         if(goodsAttributePopup == null)
-//         {
-//             goodsAttributePopup = new GoodsAttributePopup(GoodsActivity.this, goodsInfo, sizeSelected, colorSelected, type);
-//             goodsAttributePopup.setOutsideTouchable(true);
-//         }
-//         goodsAttributePopup.showAtLocation(rootView, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-//     }
  }

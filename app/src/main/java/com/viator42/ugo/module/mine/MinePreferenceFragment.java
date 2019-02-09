@@ -13,17 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
+import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.dev.DevActivity;
 import com.viator42.ugo.module.reply.ReplyActivity;
 import com.viator42.ugo.module.text.TextDisplayActivity;
+import com.viator42.ugo.utils.CommonUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public class MinePreferenceFragment extends PreferenceFragment {
-
+    private AppContext appContext;
+    private User user;
 
     public MinePreferenceFragment() {
 
@@ -39,7 +43,13 @@ public class MinePreferenceFragment extends PreferenceFragment {
         cartPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), DevActivity.class));
+                if (user != null) {
+                    CommonUtils.makeToast(getActivity(), R.string.incomplete);
+                }
+                else {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                }
+
                 return true;
             }
         });
@@ -59,6 +69,21 @@ public class MinePreferenceFragment extends PreferenceFragment {
             }
         });
 
+        Preference orderPref = findPreference("order");
+        orderPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if (user != null) {
+                    CommonUtils.makeToast(getActivity(), R.string.incomplete);
+                }
+                else {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                }
+
+                return true;
+            }
+        });
+
         Preference replyPref = findPreference("reply");
         replyPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -68,5 +93,7 @@ public class MinePreferenceFragment extends PreferenceFragment {
             }
         });
 
+        appContext = (AppContext) getActivity().getApplicationContext();
+        user = appContext.user;
     }
 }

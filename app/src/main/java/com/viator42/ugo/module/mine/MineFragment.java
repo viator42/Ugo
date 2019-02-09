@@ -29,6 +29,7 @@ import com.viator42.ugo.module.profile.ProfileActivity;
 import com.viator42.ugo.module.settings.SettingsActivity;
 import com.viator42.ugo.module.user.LoginActivity;
 import com.viator42.ugo.module.user.RegisterActivity;
+import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 import com.viator42.ugo.widget.FuncGridItemView;
 
@@ -111,6 +112,10 @@ public class MineFragment extends Fragment {
         goodsCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(user == null) {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                    return;
+                }
                 startActivity(new Intent(getActivity(), GoodsCollectActivity.class));
             }
         });
@@ -119,6 +124,10 @@ public class MineFragment extends Fragment {
         brandCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(user == null) {
+                    CommonUtils.makeToast(getActivity(), R.string.needs_login);
+                    return;
+                }
                 startActivity(new Intent(getActivity(), BrandCollectActivity.class));
             }
         });

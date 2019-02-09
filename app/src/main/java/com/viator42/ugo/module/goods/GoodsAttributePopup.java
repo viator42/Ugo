@@ -77,7 +77,7 @@ public class GoodsAttributePopup extends PopupWindow
                     return;
                 }
 
-                returnSelectedAttribute();
+                GoodsAttributePopup.this.dismiss();
             }
         });
 
@@ -180,6 +180,13 @@ public class GoodsAttributePopup extends PopupWindow
             colorsContainer.addView(colorItemView);
         }
 
+        this.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                returnSelectedAttribute();
+            }
+        });
+
         this.setContentView(view);
     }
 
@@ -213,7 +220,6 @@ public class GoodsAttributePopup extends PopupWindow
     private void returnSelectedAttribute() {
         GoodsActivity goodsActivity = (GoodsActivity) context;
         goodsActivity.setAttributeSelected(sizeSelected, colorselected);
-        GoodsAttributePopup.this.dismiss();
     }
 
 }

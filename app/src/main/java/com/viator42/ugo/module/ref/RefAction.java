@@ -10,9 +10,13 @@ import java.util.Set;
 
 public class RefAction
 {
+    /**
+     * 用户信息写入
+     * @param context
+     * @param user
+     */
     public void setUser(Context context, User user)
     {
-        //用户信息写入ref
         SharedPreferences ref = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = ref.edit();
         editor.putLong("userId", user.userId);
@@ -27,6 +31,11 @@ public class RefAction
 
     }
 
+    /**
+     * 读取用户信息
+     * @param context
+     * @return
+     */
     public User getUser(Context context)
     {
         User user = null;
@@ -52,6 +61,10 @@ public class RefAction
         return user;
     }
 
+    /**
+     * 清除用户信息
+     * @param context
+     */
     public void removeUser(Context context)
     {
         SharedPreferences ref = context.getSharedPreferences("user", Context.MODE_PRIVATE);

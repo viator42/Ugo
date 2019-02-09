@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Ugo</string>
-    <string name="title_activity_mainpage">U购</string>
+    <string name="app_name">U购购物</string>
+    <string name="title_activity_mainpage">U购购物</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -71,6 +71,8 @@
     <string name="about_tel">请在此输入对U购的建议或者报告问题</string>
     <string name="load_category_failed">获取分类失败</string>
     <string name="load_failed">载入失败</string>
+    <string name="logout_confirm">是否退出登录</string>
+    <string name="incomplete">此功能尚未完成</string>
 
     <string name="co_tel">0531-68826667</string>
     <string name="co_website">www.ugochina.com</string>
