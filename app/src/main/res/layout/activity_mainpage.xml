@@ -44,8 +44,8 @@
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="453dp"
-        android:layout_margin="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="@id/navigation"
