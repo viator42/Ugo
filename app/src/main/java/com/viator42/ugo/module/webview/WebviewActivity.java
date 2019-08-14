@@ -34,6 +34,7 @@ public class WebviewActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         url = bundle.getString("url");
 
+
         webView = findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
