@@ -19,12 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="channel_id"
-            android:value="${channel_id}" />
-        <meta-data
-            android:name="app_name"
-            android:value="${app_name}" />
 
         <activity
             android:name=".StartActivity"

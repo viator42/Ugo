@@ -32,21 +32,6 @@ android {
 
     flavorDimensions "default"
     productFlavors {
-        /*
-        qihu360 {
-            manifestPlaceholders = [
-                    channel_id: "1000",
-                    app_name  : "UGou_360定制版",
-            ]
-
-        }
-        wandoujia {
-            manifestPlaceholders = [
-                    channel_id: "1001",
-                    app_name  : "UGou_豌豆荚定制版",
-            ]
-        }
-        */
         productFlavors.all {
             flavor -> flavor.manifestPlaceholders =[channel: name]
         }
@@ -56,9 +41,11 @@ android {
         enabled = true
     }
 
-    task hello {
-        println 'Ugou gradle running'
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
+    buildToolsVersion = '28.0.3'
 
     android.applicationVariants.all { variant ->
         variant.outputs.all { output ->
@@ -106,6 +93,4 @@ dependencies {
     // if you use the support libraries
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.+'
     implementation 'com.jakewharton:disklrucache:2.0.2'
-
-//    implementation project(':base')
 }

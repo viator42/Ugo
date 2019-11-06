@@ -28,9 +28,9 @@ StartActivity extends AppCompatActivity {
         appContext = (AppContext) getApplicationContext();
         appContext.user = new RefAction().getUser(this);
 
-        HashMap<String, Object> channelInfo = CommonUtils.getChannelInfo(this);
-        CommonUtils.log(String.valueOf(channelInfo.get("channel_id")));
-        CommonUtils.log(String.valueOf(channelInfo.get("app_name")));
+//        HashMap<String, Object> channelInfo = CommonUtils.getChannelInfo(this);
+//        CommonUtils.log(String.valueOf(channelInfo.get("channel_id")));
+//        CommonUtils.log(String.valueOf(channelInfo.get("app_name")));
 
         new SplashTask().start();
 
