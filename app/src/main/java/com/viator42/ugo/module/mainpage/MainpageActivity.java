@@ -24,7 +24,7 @@ import com.viator42.ugo.StaticValues;
 import com.viator42.ugo.module.brands.BrandsFragment;
 import com.viator42.ugo.module.mine.MineFragment;
 import com.viator42.ugo.module.theme.ThemeFragment;
-import com.viator42.ugo.utils.BottomNavigationViewHelper;
+//import com.viator42.ugo.utils.BottomNavigationViewHelper;
 
 public class MainpageActivity extends AppCompatActivity {
     private MainpageFragment mainpageFragment;
@@ -70,7 +70,7 @@ public class MainpageActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        BottomNavigationViewHelper.disableShiftMode(navigation);
+//        BottomNavigationViewHelper.disableShiftMode(navigation);
 
 //        toolbar.setNavigationIcon(R.mipmap.ic_arrow_left_white_24dp);
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {

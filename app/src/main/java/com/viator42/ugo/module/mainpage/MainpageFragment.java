@@ -29,7 +29,7 @@ import com.viator42.ugo.module.mainpage.result.HomeResult;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.EndlessParentScrollListener;
 import com.viator42.ugo.utils.ExpRecyclerView;
-import com.viator42.ugo.utils.TimeoutbleProgressDialog;
+import com.viator42.ugo.widget.TimeoutbleProgressDialog;
 import com.viator42.ugo.widget.ActivityItemView;
 import com.viator42.ugo.widget.CategoryItemView;
 import com.viator42.ugo.widget.RecommendItemView;

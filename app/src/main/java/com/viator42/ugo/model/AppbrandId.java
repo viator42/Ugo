@@ -10,6 +10,7 @@ public class AppbrandId implements Parcelable {
     public String detail;
     public String showpic;
     public int flag;
+    public String intro;
 
     public AppbrandId(){}
 
@@ -20,6 +21,7 @@ public class AppbrandId implements Parcelable {
         detail = in.readString();
         showpic = in.readString();
         flag = in.readInt();
+        intro = in.readString();
     }
 
     public static final Creator<AppbrandId> CREATOR = new Creator<AppbrandId>() {
@@ -47,5 +49,6 @@ public class AppbrandId implements Parcelable {
         dest.writeString(detail);
         dest.writeString(showpic);
         dest.writeInt(flag);
+        dest.writeString(intro);
     }
 }

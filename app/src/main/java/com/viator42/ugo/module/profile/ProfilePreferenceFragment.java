@@ -41,7 +41,6 @@ public class ProfilePreferenceFragment extends PreferenceFragment {
         super.onStart();
         user = appContext.user;
 
-        nicknamePreference.setTitle(user.userName);
         headimgPreference.setHeadimg();
         nicknamePreference.setSummary(user.userName);
         telPreference.setSummary(user.mobile);

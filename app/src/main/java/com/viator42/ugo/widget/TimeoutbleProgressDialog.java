@@ -1,4 +1,4 @@
-package com.viator42.ugo.utils;
+package com.viator42.ugo.widget;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;

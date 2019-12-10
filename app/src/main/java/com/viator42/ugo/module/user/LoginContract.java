@@ -11,7 +11,6 @@ public interface LoginContract {
         void setProgressingDialog(boolean flag);
     }
 
-
     interface Presenter {
         void login(LoginParam loginParam);
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,32 +9,59 @@
     tools:context=".module.user.RegisterActivity"
     tools:showIn="@layout/activity_register">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/tel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/tel" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/button"
+    <EditText
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_marginHorizontal="@dimen/margin_stanard"
+        android:id="@+id/tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:hint="@string/tel" />
 
-</LinearLayout>
+    <EditText
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_marginHorizontal="@dimen/margin_stanard"
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tel"
+        android:hint="@string/password" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_stanard"
+        android:layout_marginHorizontal="@dimen/margin_stanard"
+        android:layout_below="@id/password"
+        android:orientation="horizontal"
+        android:id="@+id/sms_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:hint="@string/sms"
+            android:layout_weight="2"
+            android:id="@+id/sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/button_bg"
+            android:textColor="@color/text_white"
+            android:text="@string/get_sms"
+            android:layout_marginLeft="@dimen/margin_stanard"
+            android:layout_weight="1"
+            android:id="@+id/get_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_below="@+id/sms_container"
+        android:id="@+id/register"
+        android:background="@color/button_bg"
+        android:textColor="@color/text_white"
+        android:layout_margin="@dimen/margin_stanard"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
+
+</RelativeLayout>

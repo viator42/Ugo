@@ -212,6 +212,16 @@ public class BrandDetailActivity extends AppCompatActivity implements BrandDetai
 
     }
 
+    @Override
+    public void saveAppBarndCollectSuccess() {
+        CommonUtils.makeToast(BrandDetailActivity.this, R.string.favourite_insert_success);
+    }
+
+    @Override
+    public void saveAppBrandCollectFailed(String msg) {
+        CommonUtils.makeToast(BrandDetailActivity.this, msg);
+    }
+
     /**
      * 需要登录窗口
      */

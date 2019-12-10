@@ -93,4 +93,41 @@ public class CommonUtils {
 
         return result;
     }
+
+    /**
+     * 长文字截取内容,在末尾添加省略号
+     * @param content 原文
+     * @param maxLength 截取的最大长度
+     * @return 截取后的文字内容
+     */
+    public static String omissionText(String content, int maxLength) {
+        String result = content;
+        //处理文字长度
+        if(maxLength > 0) {
+            if (content != null && content.length() > maxLength) {
+                result = content.substring(0, maxLength);
+                String[] endMarks = {"！", "!", "。", ".","，", ","};
+                int splitPt = 0;
+                for (String endMark: endMarks) {
+                    int pt = result.lastIndexOf(endMark);
+                    if(pt > 0) {
+                        if(pt > splitPt) {
+                            splitPt = pt;
+                        }
+                    }
+                }
+
+                if (splitPt > 0) {
+                    result = result.substring(0, splitPt);
+                    result += "...";
+                }
+            }
+        }
+        else {
+            return content;
+        }
+
+        return result;
+    }
+
 }

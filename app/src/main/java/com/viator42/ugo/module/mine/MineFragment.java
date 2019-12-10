@@ -38,6 +38,7 @@ import com.viator42.ugo.widget.FuncGridItemView;
  */
 public class MineFragment extends Fragment {
     private Button loginBtn;
+    private Button registerBtn;
     private ViewGroup loginContainer;
     private ViewGroup profileContainer;
     private ImageView headImgView;
@@ -74,7 +75,7 @@ public class MineFragment extends Fragment {
             profileContainer.setVisibility(View.VISIBLE);
             loginContainer.setVisibility(View.GONE);
 
-            if(!user.headImg.isEmpty()) {
+            if(user.headImg!=null && !user.headImg.isEmpty()) {
                 GlideApp.with(getContext())
                         .load(user.headImg)
                         .placeholder(R.drawable.ic_headimg)
@@ -97,11 +98,18 @@ public class MineFragment extends Fragment {
         profileContainer = view.findViewById(R.id.profile_container);
 
         loginBtn = view.findViewById(R.id.login);
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
+
+        registerBtn = view.findViewById(R.id.register);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RegisterActivity.class));
             }
         });
 

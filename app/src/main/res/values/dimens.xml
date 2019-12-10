@@ -19,7 +19,7 @@
     <dimen name="splash_logo_size">100dp</dimen>
     <dimen name="attribute_width">96dp</dimen>
     <dimen name="attribute_height">38dp</dimen>
-    <dimen name="mainpage_banner_text_size">16dp</dimen>
+    <dimen name="mainpage_banner_text_size">20dp</dimen>
     <dimen name="view_min_height">38dp</dimen>
     <dimen name="clickable_min_height">38dp</dimen>
     <dimen name="logo_img_size">74dp</dimen>
@@ -31,5 +31,6 @@
     <dimen name="theme_item_height">140dp</dimen>
     <dimen name="brand_item_height">120dp</dimen>
     <dimen name="recommend_item_size">100dp</dimen>
+    <dimen name="toolbar_height">38dp</dimen>
 
 </resources>

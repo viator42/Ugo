@@ -22,7 +22,7 @@ import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.category.param.CategoryGoodsParam;
 import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.EndlessGridRecyclerOnScrollListener;
-import com.viator42.ugo.utils.TimeoutbleProgressDialog;
+import com.viator42.ugo.widget.TimeoutbleProgressDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

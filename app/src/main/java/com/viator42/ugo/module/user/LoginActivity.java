@@ -13,15 +13,13 @@ import android.widget.EditText;
 
 import com.viator42.ugo.AppContext;
 import com.viator42.ugo.StaticValues;
-import com.viator42.ugo.base.BaseActivity;
 import com.viator42.ugo.module.ref.RefAction;
-import com.viator42.ugo.module.user.LoginContract;
 
 import com.viator42.ugo.R;
 import com.viator42.ugo.module.user.param.LoginParam;
 import com.viator42.ugo.module.user.result.LoginResult;
 import com.viator42.ugo.utils.CommonUtils;
-import com.viator42.ugo.utils.TimeoutbleProgressDialog;
+import com.viator42.ugo.widget.TimeoutbleProgressDialog;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private EditText telEditText;
@@ -60,6 +58,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setProgressingDialog(true);
+
                 LoginParam loginParam = new LoginParam();
                 loginParam.mobile = telEditText.getText().toString();
                 loginParam.pass = passwordEditText.getText().toString();
@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void loginSuccess(LoginResult loginResult) {
+        setProgressingDialog(false);
+
         appContext.user = loginResult.data;
         new RefAction().setUser(this, loginResult.data);
         LoginActivity.this.finish();
@@ -99,6 +101,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void loginFailed(String msg) {
+        setProgressingDialog(false);
+
         if (msg != null) {
             CommonUtils.makeToast(LoginActivity.this, R.string.load_failed);
         }

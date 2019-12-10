@@ -88,6 +88,9 @@ public class GoodsCollectActivity extends BaseActivity implements GoodsCollectCo
     }
 
     private void reload() {
+        goodsListData = null;
+        adapter = null;
+
         load();
     }
 

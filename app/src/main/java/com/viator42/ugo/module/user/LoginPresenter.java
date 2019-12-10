@@ -46,7 +46,13 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                 @Override
                 public void onNext(Response<LoginResult> loginResultResponse) {
-                    view.loginSuccess(loginResultResponse.body());
+                    LoginResult loginResult = loginResultResponse.body();
+                    if(loginResult.data.userId != 0) {
+                        view.loginSuccess(loginResultResponse.body());
+                    }
+                    else {
+                        view.loginFailed(loginResult.data.msg);
+                    }
                 }
 
                 @Override

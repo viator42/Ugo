@@ -12,7 +12,7 @@ public class StaticValues {
     public static final int GOODS_FAVOURITE_ON = 1;
     public static final int GOODS_FAVOURITE_OFF = 0;
 
-    public final static long splashTime = 3000;
+    public final static int splashTime = 5;
 
     public final static String BROADCAST_EXIT = "BROADCAST_EXIT";
 

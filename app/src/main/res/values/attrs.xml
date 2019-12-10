@@ -4,4 +4,8 @@
         <attr name="img" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="CircleProgressbar">
+        <attr name="in_circle_color" format="color" />
+    </declare-styleable>
+
 </resources>

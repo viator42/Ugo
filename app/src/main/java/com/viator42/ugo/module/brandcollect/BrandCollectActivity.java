@@ -89,6 +89,7 @@ public class BrandCollectActivity extends BaseActivity implements BrandCollectCo
         loadParam.userId = user.userId;
         loadParam.sessionid = user.sessionid;
         loadParam.newUserId = user.newUserId;
+        loadParam.area = "370105";
 
         brandCollectPresenter.load(loadParam);
     }
@@ -100,7 +101,7 @@ public class BrandCollectActivity extends BaseActivity implements BrandCollectCo
         }
 
         for (AppBrandCollectItem appBrandCollectItem : appBrandCollectItems) {
-            Brand brand = appBrandCollectItem.appbrandId;
+            AppbrandId brand = appBrandCollectItem.appbrandId;
             Map<String,Object> item = new HashMap<String,Object>();
             item.put("id", brand.id);
             item.put("obj", brand);

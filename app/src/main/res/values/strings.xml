@@ -73,6 +73,9 @@
     <string name="load_failed">载入失败</string>
     <string name="logout_confirm">是否退出登录</string>
     <string name="incomplete">此功能尚未完成</string>
+    <string name="favourite_insert_success">添加收藏成功</string>
+    <string name="sms">验证码</string>
+    <string name="get_sms">获取验证码</string>
 
     <string name="co_tel">0531-68826667</string>
     <string name="co_website">www.ugochina.com</string>

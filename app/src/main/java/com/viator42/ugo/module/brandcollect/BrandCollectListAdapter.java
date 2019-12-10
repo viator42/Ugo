@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +19,9 @@ import com.viator42.ugo.model.AppBrandCollectItem;
 import com.viator42.ugo.model.AppbrandId;
 import com.viator42.ugo.model.AppgoodsId;
 import com.viator42.ugo.model.Brand;
+import com.viator42.ugo.module.branddetail.BrandDetailActivity;
 import com.viator42.ugo.module.goods.GoodsActivity;
+import com.viator42.ugo.utils.CommonUtils;
 import com.viator42.ugo.utils.GlideApp;
 
 import java.util.List;
@@ -43,23 +46,23 @@ public class BrandCollectListAdapter extends RecyclerView.Adapter<BrandCollectLi
 
     @Override
     public void onBindViewHolder(@NonNull BrandCollectListAdapter.ViewHolder holder, int position) {
-        final Brand brand = (Brand) list.get(position).get("obj");
+        final AppbrandId brand = (AppbrandId) list.get(position).get("obj");
         GlideApp.with(context)
                 .load(brand.logopic)
                 .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.img);
         holder.name.setText(brand.brandName);
-        holder.detail.setText(brand.detail);
+        holder.detail.setText(CommonUtils.omissionText(brand.detail, 100));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent intent = new Intent(context, BrandDetailActivity.class);
 //                Bundle bundle = new Bundle();
-//                bundle.putLong("goodsId", appgoodsId.id);
-//                Intent intent = new Intent(context, GoodsActivity.class);
+//                bundle.putLong("id", (Long) list.get(position).get("id"));
+//                bundle.putParcelable("obj", brand);
 //                intent.putExtras(bundle);
-//
 //                context.startActivity(intent);
             }
         });
