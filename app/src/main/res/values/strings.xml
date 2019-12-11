@@ -128,5 +128,6 @@
                 9. 反馈信息。提交反馈建议\n 
                 四． 购买\n 
                 1. 所有商品只限山东地区购买,其他地区下单不发货,误操作可联系我们退款</string>
+    <string name="title_activity_order_list">OrderListActivity</string>
 
 </resources>

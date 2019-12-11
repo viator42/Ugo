@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_reply">
 
     <EditText
+        style="@style/EditTextStyle"
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,10 +24,8 @@
     <Button
         android:text="@string/submit"
         android:id="@+id/submit"
-        android:background="@color/button_bg"
-        android:textColor="@color/text_white"
-        android:layout_marginHorizontal="@dimen/margin_stanard"
-        android:layout_marginBottom="@dimen/margin_stanard"
+        style="@style/BtnStyle"
+        android:layout_margin="@dimen/margin_stanard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

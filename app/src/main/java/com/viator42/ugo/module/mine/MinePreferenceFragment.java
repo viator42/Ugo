@@ -17,6 +17,7 @@ import com.viator42.ugo.AppContext;
 import com.viator42.ugo.R;
 import com.viator42.ugo.model.User;
 import com.viator42.ugo.module.dev.DevActivity;
+import com.viator42.ugo.module.order.OrderListActivity;
 import com.viator42.ugo.module.reply.ReplyActivity;
 import com.viator42.ugo.module.text.TextDisplayActivity;
 import com.viator42.ugo.utils.CommonUtils;
@@ -74,7 +75,8 @@ public class MinePreferenceFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 if (user != null) {
-                    CommonUtils.makeToast(getActivity(), R.string.incomplete);
+//                    CommonUtils.makeToast(getActivity(), R.string.incomplete);
+                    startActivity(new Intent(getActivity(), OrderListActivity.class));
                 }
                 else {
                     CommonUtils.makeToast(getActivity(), R.string.needs_login);

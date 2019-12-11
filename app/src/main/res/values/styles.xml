@@ -24,4 +24,22 @@
         <item name="android:windowExitAnimation">@anim/wrap_slide_vertical_exit_out</item>
     </style>
 
+    <style name="EditTextStyle" parent="android:style/TextAppearance.Holo.Widget.EditText">
+        <item name="android:background">@drawable/border_edittext</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="android:textSize">14dp</item>
+
+    </style>
+
+    <style name="BtnStyle" parent="android:style/TextAppearance.Holo.Widget.Button">
+        <item name="android:background">@drawable/round_rect_btn</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:minHeight">38dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
 </resources>

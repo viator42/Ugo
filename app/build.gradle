@@ -33,7 +33,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         productFlavors.all {
-            flavor -> flavor.manifestPlaceholders =[channel: name]
+            flavor -> flavor.manifestPlaceholders = [channel: name]
         }
     }
 
